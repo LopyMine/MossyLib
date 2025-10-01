@@ -1,5 +1,6 @@
 plugins {
 	id("net.lopymine.mossy-plugin")
+	id("maven-publish")
 }
 
 mossyDependencies {
@@ -31,4 +32,19 @@ mossyResources {
 
 String prop(String key) {
 	return findProperty(key).toString()
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId = prop("data.mod_maven_group")
+			artifactId = prop("data.mod_id")
+			version = "${prop("data.mod_version")}+${stonecutter.current.version}-${new Date().format("yyyyMMddHHmmss")}"
+			from components.java
+		}
+	}
+
+	repositories {
+		mavenLocal()
+	}
 }

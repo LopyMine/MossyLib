@@ -1,0 +1,26 @@
+{
+	"required": true,
+	"package": "net.lopymine.mossylib.mixin",
+	"refmap": "${mod_id}.refmap.json",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		//? =1.20.1 {
+		/*"yacl.category.TabButtonWidgetMixin",
+		"yacl.category.TabNavigationWidgetMixin",
+		*///?}
+
+		//? >=1.21.4 {
+		"ScrollableWidgetMixin",
+		//?}
+
+		"AbstractWidgetMixin",
+		"PressableWidgetMixin",
+		"TextFieldWidgetMixin",
+		"yacl.YetAnotherConfigLibImplBuilderMixin",
+		"yacl.YetAnotherConfigLibImplMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

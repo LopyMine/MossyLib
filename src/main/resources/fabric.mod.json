@@ -16,13 +16,13 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "net.lopymine.mossy.Mossy"
+	        "net.lopymine.mossylib.MossyLib"
         ],
         "client": [
-            "net.lopymine.mossy.client.MossyClient"
+	        "net.lopymine.mossylib.client.MossyLibClient"
         ],
         "modmenu": [
-            "net.lopymine.mossy.modmenu.ModMenuIntegration"
+	        "net.lopymine.mossylib.modmenu.MossyLibModMenuIntegration"
         ]
     },
     "depends": {
