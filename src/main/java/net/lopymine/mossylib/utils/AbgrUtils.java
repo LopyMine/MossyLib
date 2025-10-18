@@ -1,5 +1,6 @@
 package net.lopymine.mossylib.utils;
 
+@SuppressWarnings("unused")
 public class AbgrUtils {
 
 	public static int getAlpha(int abgr) {

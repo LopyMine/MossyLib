@@ -1,7 +1,7 @@
 package net.lopymine.mossylib.modmenu;
 
 import net.lopymine.mossylib.MossyLib;
-import net.lopymine.mossylib.yacl.YACLConfigurationScreen;
+import net.lopymine.mossylib.yacl.MossyTestYACLConfigurationScreen;
 import net.minecraft.client.gui.screen.Screen;
 
 public class MossyLibModMenuIntegration extends AbstractModMenuIntegration {
@@ -13,6 +13,6 @@ public class MossyLibModMenuIntegration extends AbstractModMenuIntegration {
 
 	@Override
 	protected Screen createConfigScreen(Screen parent) {
-		return YACLConfigurationScreen.createScreen(parent);
+		return MossyTestYACLConfigurationScreen.createTestScreen(parent);
 	}
 }

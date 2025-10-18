@@ -1,5 +1,6 @@
 package net.lopymine.mossylib.utils;
 
+@SuppressWarnings("unused")
 public class ArgbUtils {
 
 	public static int swapAlpha(int argb, int alpha) {

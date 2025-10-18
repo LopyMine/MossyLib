@@ -1,8 +1,8 @@
 package net.lopymine.mossylib;
 
+import net.lopymine.mossylib.logger.MossyLogger;
 import net.minecraft.text.*;
 import net.minecraft.util.Identifier;
-import org.slf4j.*;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -10,14 +10,14 @@ public class MossyLib implements ModInitializer {
 
 	public static final String MOD_NAME = /*$ mod_name*/ "MossyLib";
 	public static final String MOD_ID = /*$ mod_id*/ "mossylib";
-	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.7.1+1.21.6-fabric";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.6.2+1.21-fabric";
+	public static final MossyLogger LOGGER = new MossyLogger(MOD_NAME);
 
 	public static Identifier spriteId(String path) {
 		//? if >=1.20.2 {
 		return id(path);
 		//?} else {
-		/*return id(String.format("textures/1.20.1/gui/sprites/%s.png", path));
+		/*return id(String.format("textures/gui/sprites/%s.png", path));
 		 *///?}
 	}
 
@@ -31,6 +31,6 @@ public class MossyLib implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("{} Initialized", MOD_NAME);
+		LOGGER.debug("{} Initialized", MOD_NAME);
 	}
 }

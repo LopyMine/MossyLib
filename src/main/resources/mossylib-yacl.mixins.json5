@@ -1,0 +1,17 @@
+{
+	"required": true,
+	"package": "net.lopymine.mossylib.mixin.yacl",
+	"plugin": "net.lopymine.mossylib.compat.yacl.YACLCompatPlugin",
+	"refmap": "${mod_id}.refmap.json",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		"AbstractWidgetMixin",
+		"YetAnotherConfigLibImplBuilderMixin",
+		"YetAnotherConfigLibImplMixin",
+		"SearchFieldWidgetMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

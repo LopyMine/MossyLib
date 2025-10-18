@@ -7,6 +7,7 @@ import net.lopymine.mossylib.utils.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Identifier;
 
+@SuppressWarnings("unused")
 @ExtensionMethod(DrawContextExtension.class)
 public class BackgroundRenderer {
 
@@ -16,7 +17,7 @@ public class BackgroundRenderer {
 
 	public static void drawWidgetBackground(DrawContext context, int x, int y, int width, int height, boolean enabled, boolean hovered, boolean rotate) {
 		if (!enabled) {
-			DrawUtils.drawGuiTexture(context, MossyLib.id("transparency/widget/disabled_widget"), x, y, width, height);
+			DrawUtils.drawGuiTexture(context, MossyLib.spriteId("transparency/widget/disabled_widget"), x, y, width, height/*? if <1.21 {*//*, 300, 22, 2 *//*?}*/);
 			return;
 		}
 		context.push();
@@ -26,9 +27,9 @@ public class BackgroundRenderer {
 			context.translate(-width, -height, 0);
 		}
 		if (hovered) {
-			DrawUtils.drawGuiTexture(context, MossyLib.id("transparency/widget/hovered_widget"), 0, 0, width, height);
+			DrawUtils.drawGuiTexture(context, MossyLib.spriteId("transparency/widget/hovered_widget"), 0, 0, width, height/*? if <1.21 {*//*, 300, 22, 2 *//*?}*/);
 		} else {
-			DrawUtils.drawGuiTexture(context, MossyLib.id("transparency/widget/widget"), 0, 0, width, height);
+			DrawUtils.drawGuiTexture(context, MossyLib.spriteId("transparency/widget/widget"), 0, 0, width, height/*? if <1.21 {*//*, 300, 22, 2 *//*?}*/);
 		}
 		context.pop();
 	}

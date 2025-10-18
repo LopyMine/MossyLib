@@ -1,6 +1,6 @@
 plugins {
-	id("net.lopymine.mossy-plugin")
-	id("maven-publish")
+	id "net.lopymine.mossy-plugin-core" version "1.0.1"
+	id "maven-publish"
 }
 
 mossyDependencies {
@@ -9,42 +9,34 @@ mossyDependencies {
 	lombok = prop("base.lombok_version")
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")
-
 	additional {
-	    // - By default, every additional project dependency ("dep.modId" from gradle.properties) will use
-	    // - Modrinth Maven and "modImplementation" configuration name
-	    // - If you want to override mod configuration name, you can do this:
-
-		//override("modCompileOnly", "just_mod_id")
-
-		// - It will do this:
-		// - modImplementation("maven.modrinth:modId:version") -> modCompileOnly("maven.modrinth:modId:version")
-
-	    // - Or if you want to disable it and handle by yourself, just disable it auto handling:
-
-		//disable("just_mod_id")
+		override("modCompileOnly", "yacl")
 	}
 }
 
-mossyResources {
-	//expandFiles = ["custom", "file", "patterns", "here"]
+publishing {
+	repositories {
+		maven {
+			name = 'mossyprojects'
+			url = uri('https://maven.lopymine.net/releases')
+			credentials(PasswordCredentials)
+			authentication {
+				create('basic', BasicAuthentication)
+			}
+		}
+		mavenLocal()
+	}
+
+	publications {
+		mod(MavenPublication) {
+			groupId = prop("data.mod_maven_group")
+			artifactId = prop("data.mod_id")
+			version = "${prop("data.mod_version")}"
+			from components.java
+		}
+	}
 }
 
 String prop(String key) {
 	return findProperty(key).toString()
-}
-
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			groupId = prop("data.mod_maven_group")
-			artifactId = prop("data.mod_id")
-			version = "${prop("data.mod_version")}+${stonecutter.current.version}-${new Date().format("yyyyMMddHHmmss")}"
-			from components.java
-		}
-	}
-
-	repositories {
-		mavenLocal()
-	}
 }

@@ -6,19 +6,17 @@
 	"mixins": [],
 	"client": [
 		//? =1.20.1 {
-		/*"yacl.category.TabButtonWidgetMixin",
-		"yacl.category.TabNavigationWidgetMixin",
+		/*"tab.TabButtonWidgetMixin",
+		"tab.TabNavigationWidgetMixin",
+		"DrawContextMixin",
 		*///?}
-
 		//? >=1.21.4 {
-		"ScrollableWidgetMixin",
+		/*"ScrollableWidgetMixin",
+		*///?} else {
+		"EntryListWidgetMixin",
 		//?}
-
-		"AbstractWidgetMixin",
 		"PressableWidgetMixin",
-		"TextFieldWidgetMixin",
-		"yacl.YetAnotherConfigLibImplBuilderMixin",
-		"yacl.YetAnotherConfigLibImplMixin"
+		"TextFieldWidgetMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

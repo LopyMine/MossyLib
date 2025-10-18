@@ -8,8 +8,8 @@
 	"${mod_id}.modmenu.group.mossy_group.name": "§lMossy Group",
 	"${mod_id}.modmenu.group.mossy_group.description": "Example Mossy Group Description.",
 
-	"${mod_id}.modmenu.option.mossy_option.name": "Mossy Option",
-	"${mod_id}.modmenu.option.mossy_option.description": "Example Mossy Option Description.",
+	"${mod_id}.modmenu.option.mossy.name": "Mossy Option",
+	"${mod_id}.modmenu.option.mossy.description": "Example Mossy Option Description.",
 
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled"

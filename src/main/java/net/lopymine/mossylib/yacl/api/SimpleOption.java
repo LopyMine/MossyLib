@@ -1,20 +1,67 @@
 package net.lopymine.mossylib.yacl.api;
 
 import dev.isxander.yacl3.api.*;
+import dev.isxander.yacl3.config.v2.api.FieldAccess;
+import dev.isxander.yacl3.config.v2.impl.*;
 import dev.isxander.yacl3.gui.YACLScreen;
 import dev.isxander.yacl3.gui.image.ImageRenderer;
+import java.lang.reflect.Field;
 import lombok.Getter;
 import lombok.experimental.ExtensionMethod;
 
 import net.lopymine.mossylib.utils.ModMenuUtils;
-import net.lopymine.mossylib.yacl.extension.YACLAPIExtension;
 
 import java.util.List;
 import java.util.function.*;
+import net.lopymine.mossylib.yacl.extension.SimpleOptionExtension;
+import net.lopymine.mossylib.yacl.state.PreviewStateManager;
 
 @SuppressWarnings("unused")
-@ExtensionMethod(YACLAPIExtension.class)
 public class SimpleOption {
+
+	public static <T> Builder<T> startFieldBuilder(String optionId, Object defConfig, Object config) {
+		return startFieldBuilder(optionId, defConfig, config, false);
+	}
+
+	public static <T> Builder<T> startFieldBuilder(String optionId, Object defConfig, Object config, boolean instant) {
+		Builder<T> builder = new Builder<>(optionId);
+		try {
+			Field configField = config.getClass().getDeclaredField(optionId);
+			Field defConfigField = defConfig.getClass().getDeclaredField(optionId);
+
+			Supplier<T> getter = () -> {
+				try {
+					configField.setAccessible(true);
+					@SuppressWarnings("unchecked")
+					T value = (T) configField.get(config);
+					configField.setAccessible(false);
+					return value;
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			};
+
+			Consumer<T> setter = (value) -> {
+				try {
+					configField.setAccessible(true);
+					configField.set(config, value);
+					configField.setAccessible(false);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			};
+
+			defConfigField.setAccessible(true);
+			@SuppressWarnings("unchecked")
+			T defValue = (T) defConfigField.get(defConfig);
+			defConfigField.setAccessible(false);
+
+			builder.withBinding(Binding.generic(defValue, getter, setter), instant);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return builder;
+	}
 
 	public static <T> Builder<T> startBuilder(String optionId) {
 		return new Builder<>(optionId);
@@ -60,12 +107,13 @@ public class SimpleOption {
 		}
 
 		public Builder<T> withBinding(Binding<T> binding, boolean instant) {
-			this.optionBuilder.bindingE(binding, instant);
+			this.optionBuilder.stateManager(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 			return this;
 		}
 
 		public Builder<T> withBinding(T def, Supplier<T> getter, Consumer<T> setter, boolean instant) {
-			this.optionBuilder.bindingE(Binding.generic(def, getter, setter), instant);
+			Binding<T> binding = Binding.generic(def, getter, setter);
+			this.optionBuilder.stateManager(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 			return this;
 		}
 
@@ -167,12 +215,13 @@ public class SimpleOption {
 		}
 
 		public ListOptionBuilder<T> withBinding(Binding<List<T>> binding, boolean instant) {
-			this.optionBuilder.bindingE(binding, instant);
+			this.optionBuilder.state(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 			return this;
 		}
 
 		public ListOptionBuilder<T> withBinding(List<T> def, Supplier<List<T>> getter, Consumer<List<T>> setter, boolean instant) {
-			this.optionBuilder.bindingE(Binding.generic(def, getter, setter), instant);
+			Binding<List<T>> binding = Binding.generic(def, getter, setter);
+			this.optionBuilder.state(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 			return this;
 		}
 
