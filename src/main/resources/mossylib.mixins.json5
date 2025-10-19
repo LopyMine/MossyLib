@@ -11,10 +11,10 @@
 		"DrawContextMixin",
 		*///?}
 		//? >=1.21.4 {
-		/*"ScrollableWidgetMixin",
-		*///?} else {
-		"EntryListWidgetMixin",
-		//?}
+		"ScrollableWidgetMixin",
+		//?} else {
+		/*"EntryListWidgetMixin",
+		*///?}
 		"PressableWidgetMixin",
 		"TextFieldWidgetMixin"
 	],

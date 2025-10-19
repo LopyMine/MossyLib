@@ -12,12 +12,12 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.*;
 
 //? <=1.21.3 {
-import com.llamalad7.mixinextras.injector.wrapoperation.*;
+/*import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import net.minecraft.client.gui.DrawContext;
 import org.spongepowered.asm.mixin.injection.At;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-//?}
+*///?}
 
 @Mixin(EntryListWidget.class)
 public abstract class EntryListWidgetMixin /*? >=1.20.3 {*/ extends ClickableWidget /*?}*/ {
@@ -62,7 +62,7 @@ public abstract class EntryListWidgetMixin /*? >=1.20.3 {*/ extends ClickableWid
 	}
 	*///?} elif >=1.20.5 && <=1.21.3 {
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0), method = RENDER_METHOD)
+	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0), method = RENDER_METHOD)
 	private void renderTransparencyScrollerBackground(DrawContext context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, texture, x, y, width, height);
@@ -80,7 +80,7 @@ public abstract class EntryListWidgetMixin /*? >=1.20.3 {*/ extends ClickableWid
 		original.call(context, TransparencySprites.SCROLLER_SPRITE, x, y, width, height);
 	}
 
-	//?} elif <=1.21.3 {
+	*///?} elif <=1.21.3 {
 
 	/*@Shadow
 	protected abstract int getScrollbarPositionX();

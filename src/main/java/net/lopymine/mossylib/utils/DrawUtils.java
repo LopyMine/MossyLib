@@ -45,8 +45,8 @@ public class DrawUtils {
 	//? if >=1.21 {
 	public static void drawGuiTexture(DrawContext context, Identifier sprite, int x, int y, int width, int height) {
 		context.drawGuiTexture(
-				/*? if >=1.21.6 {*/ /*net.minecraft.client.gl.RenderPipelines.GUI_TEXTURED,
-				 *//*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
+				/*? if >=1.21.6 {*/ net.minecraft.client.gl.RenderPipelines.GUI_TEXTURED,
+				 /*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
 				 *//*?}*/
 				sprite,
 				x,
@@ -59,8 +59,8 @@ public class DrawUtils {
 
 	public static void drawTexture(DrawContext context, Identifier sprite, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
 		context.drawTexture(
-				/*? if >=1.21.6 {*/ /*net.minecraft.client.gl.RenderPipelines.GUI_TEXTURED,
-				*//*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
+				/*? if >=1.21.6 {*/ net.minecraft.client.gl.RenderPipelines.GUI_TEXTURED,
+				/*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
 				 *//*?}*/
 				sprite,
 				x,
@@ -75,13 +75,13 @@ public class DrawUtils {
 	}
 
 	public static void drawTooltip(DrawContext context, List<TooltipComponent> list, int x, int y) {
-		context./*? if >=1.21.6 {*/ /*drawTooltipImmediately *//*?} else {*/ drawTooltip /*?}*/(
+		context./*? if >=1.21.6 {*/ drawTooltipImmediately /*?} else {*/ /*drawTooltip *//*?}*/(
 				MinecraftClient.getInstance().textRenderer,
 				list,
 				x,
 				y,
 				HoveredTooltipPositioner.INSTANCE
-				/*? >=1.21.2 {*//*,null*//*?}*/
+				/*? >=1.21.2 {*/,null/*?}*/
 		);
 	}
 

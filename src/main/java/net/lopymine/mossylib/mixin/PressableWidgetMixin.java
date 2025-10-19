@@ -24,7 +24,7 @@ public abstract class PressableWidgetMixin extends ClickableWidget implements Dr
 
 	//? if >=1.21.6 {
 
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/util/Identifier;IIIII)V"))
+	@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/util/Identifier;IIIII)V"))
 	private void renderTransparencyWidget(DrawContext instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, width, height, color);
@@ -33,7 +33,7 @@ public abstract class PressableWidgetMixin extends ClickableWidget implements Dr
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isSelected());
 	}
 
-	*///?} elif >=1.21.2 {
+	//?} elif >=1.21.2 {
 	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Ljava/util/function/Function;Lnet/minecraft/util/Identifier;IIIII)V"))
 	private void renderTransparencyWidget(DrawContext instance, Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
@@ -44,7 +44,7 @@ public abstract class PressableWidgetMixin extends ClickableWidget implements Dr
 	}
 	*///?} elif >=1.20.2 {
 
-	@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V"))
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V"))
 	private void renderTransparencyWidget(DrawContext instance, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, identifier, x, y, width, height);
@@ -53,7 +53,7 @@ public abstract class PressableWidgetMixin extends ClickableWidget implements Dr
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isSelected());
 	}
 
-	//?} else {
+	*///?} else {
 	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawNineSlicedTexture(Lnet/minecraft/util/Identifier;IIIIIIIIII)V"))
 	private void renderTransparencyWidget1(DrawContext context, Identifier identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int i, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
