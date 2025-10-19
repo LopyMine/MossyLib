@@ -16,7 +16,6 @@ pluginManagement {
 			name "Mossy Projects"
 			url "https://maven.lopymine.net/releases"
 		}
-		mavenLocal()
 		mavenCentral()
 		gradlePluginPortal()
 	}
@@ -24,5 +23,5 @@ pluginManagement {
 
 plugins {
 	id "dev.kikugie.stonecutter" version "0.7.1"
-	id "net.lopymine.mossy-plugin-settings" version "1.0.0"
+	id "net.lopymine.mossy-plugin-settings" version "$mossy_plugin_version"
 }

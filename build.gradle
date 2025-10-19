@@ -1,5 +1,5 @@
 plugins {
-	id "net.lopymine.mossy-plugin-core" version "1.0.1"
+	id "net.lopymine.mossy-plugin-core" version "$mossy_plugin_version"
 	id "maven-publish"
 }
 
@@ -17,7 +17,7 @@ mossyDependencies {
 publishing {
 	repositories {
 		maven {
-			name = 'mossyprojects'
+			name = 'MossyProjectsReleases'
 			url = uri('https://maven.lopymine.net/releases')
 			credentials(PasswordCredentials)
 			authentication {
@@ -28,10 +28,10 @@ publishing {
 	}
 
 	publications {
-		mod(MavenPublication) {
-			groupId = prop("data.mod_maven_group")
+		mossyPlugin(MavenPublication) {
+			groupId = "${prop("data.mod_maven_group")}"
 			artifactId = prop("data.mod_id")
-			version = "${prop("data.mod_version")}"
+			version = "${prop("data.mod_version")}-${stonecutter.current.project}"
 			from components.java
 		}
 	}
