@@ -35,5 +35,10 @@
     "mixins": [
         "${mod_id}.mixins.json",
         "${mod_id}-yacl.mixins.json"
-    ]
+    ],
+	"custom": {
+		"modmenu": {
+			"badges": [ "library" ]
+		}
+	}
 }

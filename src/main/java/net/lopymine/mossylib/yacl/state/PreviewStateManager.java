@@ -6,7 +6,7 @@ import lombok.Getter;
 
 public class PreviewStateManager<T> implements StateManager<T>, ProvidesBindingForDeprecation<T> {
 
-	private final T previousValue;
+	private T previousValue;
 	private T pendingValue;
 	@Getter
 	private final Binding<T> binding;
@@ -47,6 +47,7 @@ public class PreviewStateManager<T> implements StateManager<T>, ProvidesBindingF
 	// Save current pending value
 	public void apply() {
 		this.shouldSave = false;
+		this.previousValue = this.pendingValue;
 	}
 
 	// reset to default

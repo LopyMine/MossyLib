@@ -37,7 +37,8 @@ public class MossyTestYACLConfigurationScreen {
 
 	private static SimpleGroup getMossyGroup(MossyConfig defConfig, MossyConfig config) {
 		return SimpleGroup.startBuilder("mossy_group").options(
-				SimpleOption.<Boolean>startFieldBuilder("mossy", defConfig, config)
+				SimpleOption.<Boolean>startBuilder("mossy")
+						.withBinding(defConfig.isMossy(), config::isMossy, config::setMossy, true)
 						.withController(ENABLED_OR_DISABLE_FORMATTER)
 						.withDescription(SimpleContent.NONE),
 				SimpleOption.<Boolean>startFieldBuilder("mossy", defConfig, config)
