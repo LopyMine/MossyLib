@@ -4,18 +4,18 @@ import lombok.experimental.ExtensionMethod;
 import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.extension.DrawContextExtension;
 import net.lopymine.mossylib.utils.*;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
 
 @SuppressWarnings("unused")
 @ExtensionMethod(DrawContextExtension.class)
 public class BackgroundRenderer {
 
-	public static void drawWidgetBackground(DrawContext context, int x, int y, int width, int height, boolean enabled, boolean hovered) {
+	public static void drawWidgetBackground(GuiGraphics context, int x, int y, int width, int height, boolean enabled, boolean hovered) {
 		drawWidgetBackground(context, x, y, width, height, enabled, hovered, false);
 	}
 
-	public static void drawWidgetBackground(DrawContext context, int x, int y, int width, int height, boolean enabled, boolean hovered, boolean rotate) {
+	public static void drawWidgetBackground(GuiGraphics context, int x, int y, int width, int height, boolean enabled, boolean hovered, boolean rotate) {
 		if (!enabled) {
 			DrawUtils.drawGuiTexture(context, MossyLib.spriteId("transparency/widget/disabled_widget"), x, y, width, height/*? if <1.21 {*//*, 300, 22, 2 *//*?}*/);
 			return;
@@ -34,29 +34,29 @@ public class BackgroundRenderer {
 		context.pop();
 	}
 
-	public static void drawTransparencyBackground(DrawContext context, int x, int y, int width, int height, boolean list) {
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, boolean list) {
 		drawTransparencyBackground(context, x, y, width, height, list, true, true, true, true);
 	}
 
-	public static void drawTransparencyBackground(DrawContext context, int x, int y, int width, int height, boolean list, boolean up) {
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, boolean list, boolean up) {
 		drawTransparencyBackground(context, x, y, width, height, list, up, true, true, true);
 	}
 
-	public static void drawTransparencyBackground(DrawContext context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom) {
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom) {
 		drawTransparencyBackground(context, x, y, width, height, list, up, bottom, true, true);
 	}
 
-	public static void drawTransparencyBackground(DrawContext context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom, boolean right) {
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom, boolean right) {
 		drawTransparencyBackground(context, x, y, width, height, list, up, bottom, right, true);
 	}
 
-	public static void drawTransparencyBackground(DrawContext context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom, boolean right, boolean left) {
-		Identifier menuBackgroundTexture = list ? TransparencySprites.getMenuListBackgroundTexture() : TransparencySprites.getMenuBackgroundTexture();
-		Identifier menuSeparatorTexture = TransparencySprites.getMenuSeparatorTexture();
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom, boolean right, boolean left) {
+		ResourceLocation menuBackgroundTexture = list ? TransparencySprites.getMenuListBackgroundTexture() : TransparencySprites.getMenuBackgroundTexture();
+		ResourceLocation menuSeparatorTexture = TransparencySprites.getMenuSeparatorTexture();
 		drawTransparencyBackground(context, x, y, width, height, menuBackgroundTexture, menuSeparatorTexture, up, bottom, right, left);
 	}
 
-	public static void drawTransparencyBackground(DrawContext context, int x, int y, int width, int height, Identifier backgroundTexture, Identifier separatorTexture, boolean up, boolean bottom, boolean right, boolean left) {
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, ResourceLocation backgroundTexture, ResourceLocation separatorTexture, boolean up, boolean bottom, boolean right, boolean left) {
 		RenderUtils.enableBlend();
 
 		// BACKGROUND

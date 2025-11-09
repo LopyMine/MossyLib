@@ -3,19 +3,17 @@ package net.lopymine.mossylib.yacl;
 import lombok.experimental.ExtensionMethod;
 import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.yacl.api.*;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-
 import net.lopymine.mossylib.config.MossyConfig;
 import net.lopymine.mossylib.utils.ModMenuUtils;
 import net.lopymine.mossylib.yacl.extension.SimpleOptionExtension;
-
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import java.util.function.Function;
 
 @ExtensionMethod(SimpleOptionExtension.class)
 public class MossyTestYACLConfigurationScreen {
 
-	private static final Function<Boolean, Text> ENABLED_OR_DISABLE_FORMATTER = ModMenuUtils.getEnabledOrDisabledFormatter();
+	private static final Function<Boolean, Component> ENABLED_OR_DISABLE_FORMATTER = ModMenuUtils.getEnabledOrDisabledFormatter();
 
 	private MossyTestYACLConfigurationScreen() {
 		throw new IllegalStateException("Screen class");

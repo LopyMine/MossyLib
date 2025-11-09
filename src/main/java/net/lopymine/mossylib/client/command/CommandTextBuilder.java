@@ -2,12 +2,29 @@ package net.lopymine.mossylib.client.command;
 
 import java.util.*;
 import net.lopymine.mossylib.MossyLib;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.*;
-import net.minecraft.text.ClickEvent.*;
-import net.minecraft.text.HoverEvent.Action;
-import net.minecraft.text.HoverEvent.*;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.ClickEvent.ChangePage;
+import net.minecraft.network.chat.ClickEvent.CopyToClipboard;
+import net.minecraft.network.chat.ClickEvent.Custom;
+import net.minecraft.network.chat.ClickEvent.OpenFile;
+import net.minecraft.network.chat.ClickEvent.OpenUrl;
+import net.minecraft.network.chat.ClickEvent.RunCommand;
+import net.minecraft.network.chat.ClickEvent.ShowDialog;
+import net.minecraft.network.chat.ClickEvent.SuggestCommand;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.HoverEvent.Action;
+import net.minecraft.network.chat.HoverEvent.EntityTooltipInfo;
+import net.minecraft.network.chat.HoverEvent.ShowEntity;
+import net.minecraft.network.chat.HoverEvent.ShowItem;
+import net.minecraft.network.chat.HoverEvent.ShowText;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.dialog.Dialog;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 
 //? if >=1.21.5 {
 import java.io.File;
@@ -15,32 +32,26 @@ import java.net.URI;
 import java.nio.file.Path;
 //?}
 
-//? if >=1.21.6 {
-import net.minecraft.util.Identifier;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.dialog.type.Dialog;
-//?}
-
 @SuppressWarnings("unused")
 public class CommandTextBuilder {
 
 	private final String key;
-	private final MutableText text;
+	private final MutableComponent text;
 
 	private CommandTextBuilder(String key, Object... args) {
 		this.key  = key;
 		this.text = CommandTextBuilder.translatable(key, args);
 	}
 
-	private static MutableText translatable(String key, Object... args) {
+	private static MutableComponent translatable(String key, Object... args) {
 		for (int i = 0; i < args.length; ++i) {
 			Object object = args[i];
-			if (!isPrimitive(object) && !(object instanceof Text)) {
+			if (!isPrimitive(object) && !(object instanceof Component)) {
 				args[i] = String.valueOf(object);
 			}
 		}
 
-		return Text.literal(MossyLib.text(key, args).getString().replace("&", "§"));
+		return Component.literal(MossyLib.text(key, args).getString().replace("&", "§"));
 	}
 
 	private static boolean isPrimitive(Object object) {
@@ -52,16 +63,16 @@ public class CommandTextBuilder {
 	}
 
 	public CommandTextBuilder withShowEntity(EntityType<?> type, UUID uuid, String name) {
-		return this.withShowEntity(type, uuid, Text.literal(name));
+		return this.withShowEntity(type, uuid, Component.literal(name));
 	}
 
-	public CommandTextBuilder withShowEntity(EntityType<?> type, UUID uuid, Text name) {
-		HoverEvent hoverEvent = getHoverEvent(Action.SHOW_ENTITY, new EntityContent(type, uuid, name));
+	public CommandTextBuilder withShowEntity(EntityType<?> type, UUID uuid, Component name) {
+		HoverEvent hoverEvent = getHoverEvent(Action.SHOW_ENTITY, new EntityTooltipInfo(type, uuid, name));
 		return this.withHoverEvent(hoverEvent);
 	}
 
 	public CommandTextBuilder withHoverText(Object... args) {
-		MutableText hoverText = CommandTextBuilder.translatable(this.key + ".hover_text", args);
+		MutableComponent hoverText = CommandTextBuilder.translatable(this.key + ".hover_text", args);
 		HoverEvent hoverEvent = getHoverEvent(Action.SHOW_TEXT, hoverText);
 		return this.withHoverEvent(hoverEvent);
 	}
@@ -88,9 +99,9 @@ public class CommandTextBuilder {
 		/*return new HoverEvent(action, value);
 		*//*?} else {*/
 		return switch (action) {
-			case SHOW_TEXT -> new ShowText((Text) value);
+			case SHOW_TEXT -> new ShowText((Component) value);
 			case SHOW_ITEM -> new ShowItem((ItemStack) value);
-			case SHOW_ENTITY -> new ShowEntity((EntityContent) value);
+			case SHOW_ENTITY -> new ShowEntity((EntityTooltipInfo) value);
 		};
 		/*?}*/
 	}
@@ -118,14 +129,14 @@ public class CommandTextBuilder {
 				yield new OpenFile((String) value);
 			}
 			//? if >=1.21.6 {
-			case CUSTOM -> new Custom((Identifier) value, Optional.empty());
-			case SHOW_DIALOG -> new ShowDialog((RegistryEntry<Dialog>) value);
+			case CUSTOM -> new Custom((ResourceLocation) value, Optional.empty());
+			case SHOW_DIALOG -> new ShowDialog((Holder<Dialog>) value);
 			//?}
 		};
 		/*?}*/
 	}
 
-	public Text build() {
+	public Component build() {
 		return this.text;
 	}
 }

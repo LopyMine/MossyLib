@@ -5,10 +5,9 @@ import dev.isxander.yacl3.api.ConfigCategory.Builder;
 import java.util.*;
 import java.util.function.Consumer;
 import net.lopymine.mossylib.yacl.api.SimpleOption.SimpleOptionBuilder;
-import net.minecraft.text.Text;
-
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.lopymine.mossylib.utils.ModMenuUtils;
-import net.minecraft.util.Formatting;
 
 @SuppressWarnings("unused")
 public class SimpleCategory {
@@ -48,7 +47,7 @@ public class SimpleCategory {
 
 	public ConfigCategory build(String modId) {
 		String categoryKey = ModMenuUtils.getCategoryKey(this.categoryId);
-		Text categoryName = ModMenuUtils.getName(modId, categoryKey).formatted(Formatting.BOLD);
+		Component categoryName = ModMenuUtils.getName(modId, categoryKey).withStyle(ChatFormatting.BOLD);
 
 		Builder builder = ConfigCategory.createBuilder();
 

@@ -6,9 +6,9 @@ import java.util.function.Function;
 import net.lopymine.mossylib.gui.TransparencySprites;
 import net.lopymine.mossylib.utils.DrawUtils;
 import net.lopymine.mossylib.yacl.custom.MossyScreen;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.components.AbstractSelectionList;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.*;
 
 //? <=1.21.3 {
@@ -19,8 +19,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import com.mojang.blaze3d.systems.RenderSystem;
 *///?}
 
-@Mixin(EntryListWidget.class)
-public abstract class EntryListWidgetMixin /*? >=1.20.3 {*/ extends ClickableWidget /*?}*/ {
+@Mixin(AbstractSelectionList.class)
+public abstract class EntryListWidgetMixin /*? >=1.20.3 {*/ extends AbstractWidget /*?}*/ {
 
 	@Unique
 	private static final String RENDER_METHOD = /*? >=1.20.3 {*/ "renderWidget" /*?} else {*/ /*"render" *//*?}*/;
@@ -37,7 +37,7 @@ public abstract class EntryListWidgetMixin /*? >=1.20.3 {*/ extends ClickableWid
 	*///?}
 
 	//? >=1.20.3 {
-	public EntryListWidgetMixin(int x, int y, int width, int height, Text message) {
+	public EntryListWidgetMixin(int x, int y, int width, int height, Component message) {
 		super(x, y, width, height, message);
 	}
 	//?}

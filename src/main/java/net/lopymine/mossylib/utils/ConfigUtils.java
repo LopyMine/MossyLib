@@ -13,6 +13,7 @@ public class ConfigUtils {
 
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+
 	private static String generateUniqueBackupName(Path parentDir, String fileName) {
 		String backupName = fileName + ".bkp";
 		int index = 0;

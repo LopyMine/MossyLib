@@ -2,10 +2,11 @@ package net.lopymine.mossylib.modmenu;
 
 import com.google.common.collect.Sets;
 import net.minecraft.SharedConstants;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.screen.ScreenTexts;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ConfirmScreen;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.CommonComponents;
 import net.lopymine.mossylib.client.MossyLibClient;
 import net.lopymine.mossylib.utils.ModMenuUtils;
 import java.net.*;
@@ -22,13 +23,13 @@ public class NoConfigLibraryScreen {
 	}
 
 	public static @NotNull Screen createScreen(Screen parent, String modId) {
-		return new ConfirmScreen((open) -> NoConfigLibraryScreen.onConfirm(open, parent), ModMenuUtils.getModTitle(modId), ModMenuUtils.getNoConfigScreenMessage(), ScreenTexts.CONTINUE, ScreenTexts.BACK);
+		return new ConfirmScreen((open) -> NoConfigLibraryScreen.onConfirm(open, parent), ModMenuUtils.getModTitle(modId), ModMenuUtils.getNoConfigScreenMessage(), CommonComponents.GUI_CONTINUE, CommonComponents.GUI_BACK);
 	}
 
 	private static void onConfirm(boolean open, Screen parent) {
 		if (open) {
 			try {
-				String url = NoConfigLibraryScreen.YACL_MODRINTH_LINK + SharedConstants.getGameVersion()./*? if >=1.21.6 {*/ name() /*?} else {*//*getName()*//*?}*/;
+				String url = NoConfigLibraryScreen.YACL_MODRINTH_LINK + SharedConstants.getCurrentVersion()./*? if >=1.21.6 {*/ name() /*?} else {*//*getName()*//*?}*/;
 				URI link = new URI(url);
 				String string = link.getScheme();
 				if (string == null) {
@@ -37,16 +38,16 @@ public class NoConfigLibraryScreen {
 				if (!NoConfigLibraryScreen.ALLOWED_PROTOCOLS.contains(string.toLowerCase(Locale.ROOT))) {
 					throw new URISyntaxException(url, "Unsupported protocol: " + string.toLowerCase(Locale.ROOT));
 				}
-				Util.getOperatingSystem().open(link);
+				Util.getPlatform().openUri(link);
 			} catch (URISyntaxException e) {
 				MossyLibClient.LOGGER.error("Can't open YACL Modrinth page:", e);
 			}
 		} else {
-			MinecraftClient.getInstance().setScreen(parent);
+			Minecraft.getInstance().setScreen(parent);
 		}
 	}
 
 	public static Screen createScreenAboutOldVersion(Screen parent, String version, String modId) {
-		return new ConfirmScreen((open) -> NoConfigLibraryScreen.onConfirm(open, parent), ModMenuUtils.getModTitle(modId), ModMenuUtils.getOldConfigScreenMessage(version), ScreenTexts.CONTINUE, ScreenTexts.BACK);
+		return new ConfirmScreen((open) -> NoConfigLibraryScreen.onConfirm(open, parent), ModMenuUtils.getModTitle(modId), ModMenuUtils.getOldConfigScreenMessage(version), CommonComponents.GUI_CONTINUE, CommonComponents.GUI_BACK);
 	}
 }
