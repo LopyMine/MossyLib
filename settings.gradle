@@ -13,8 +13,12 @@ pluginManagement {
 			url "https://maven.kikugie.dev/releases"
 		}
 		maven {
-			name "Mossy Projects"
+			name "Mossy Projects Releases"
 			url "https://maven.lopymine.net/releases"
+		}
+		maven {
+			name "Mossy Projects Snapshots"
+			url "https://maven.lopymine.net/snapshots"
 		}
 		mavenCentral()
 		gradlePluginPortal()

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class PressableWidgetMixin extends AbstractWidget implements Renderable {
 
 	@Unique
-	private static final String RENDER_METHOD = /*? >=1.20.3 {*/ "renderWidget" /*?} else {*/ /*"renderButton" *//*?}*/;
+	private static final String RENDER_METHOD = "renderWidget";
 
 	public PressableWidgetMixin(int x, int y, int width, int height, Component message) {
 		super(x, y, width, height, message);
@@ -36,33 +36,33 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 	}
 
 	//?} elif >=1.21.2 {
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Ljava/util/function/Function;Lnet/minecraft/util/Identifier;IIIII)V"))
-	private void renderTransparencyWidget(DrawContext instance, Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphics instance, Function<?, ?> function, ResourceLocation identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, function, identifier, x, y, width, height, color);
 			return;
 		}
-		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isSelected());
+		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isHoveredOrFocused());
 	}
 	*///?} elif >=1.20.2 {
 
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V"))
-	private void renderTransparencyWidget(DrawContext instance, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V"))
+	private void renderTransparencyWidget(GuiGraphics instance, ResourceLocation identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, identifier, x, y, width, height);
 			return;
 		}
-		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isSelected());
+		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isHoveredOrFocused());
 	}
 
 	*///?} else {
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawNineSlicedTexture(Lnet/minecraft/util/Identifier;IIIIIIIIII)V"))
-	private void renderTransparencyWidget1(DrawContext context, Identifier identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int i, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/ResourceLocation;IIIIIIIIII)V"))
+	private void renderTransparencyWidget1(GuiGraphics context, ResourceLocation identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int i, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, identifier, x, y, w, h, a, b, c, d, e, i);
 			return;
 		}
-		BackgroundRenderer.drawWidgetBackground(context, x, y, w, h, this.active, this.isSelected());
+		BackgroundRenderer.drawWidgetBackground(context, x, y, w, h, this.active, this.isHoveredOrFocused());
 	}
 	*///?}
 }

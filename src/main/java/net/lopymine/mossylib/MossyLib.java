@@ -1,19 +1,9 @@
 package net.lopymine.mossylib;
 
-import java.nio.file.Path;
 import net.lopymine.mossylib.logger.MossyLogger;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-
-//? if fabric {
-
-import net.fabricmc.loader.api.FabricLoader;
-
-//?} elif neoforge {
-/*import net.neoforged.fml.loading.FMLPaths;
-*///?}
-
 
 public class MossyLib {
 
@@ -31,7 +21,11 @@ public class MossyLib {
 	}
 
 	public static ResourceLocation id(String path) {
+		//? if >=1.21 {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+		//?} else {
+		/*return new ResourceLocation(MOD_ID, path);
+		*///?}
 	}
 
 	public static MutableComponent text(String path, Object... args) {

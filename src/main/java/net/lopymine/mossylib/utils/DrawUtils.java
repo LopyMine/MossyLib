@@ -18,11 +18,11 @@ public class DrawUtils {
 	public static int width = 256;
 	public static int height = 256;
 
-	public static void drawGuiTexture(DrawContext context, Identifier sprite, int x, int y, int width, int height, int textureWidth, int textureHeight, int border) {
+	public static void drawGuiTexture(GuiGraphics context, ResourceLocation sprite, int x, int y, int width, int height, int textureWidth, int textureHeight, int border) {
 		DrawUtils.width = textureWidth;
 		DrawUtils.height = textureHeight;
 		DrawUtils.drawing = true;
-		context.drawNineSlicedTexture(
+		context.blitNineSliced(
 				sprite,
 				x,
 				y,
@@ -46,7 +46,7 @@ public class DrawUtils {
 	public static void drawGuiTexture(GuiGraphics context, ResourceLocation sprite, int x, int y, int width, int height) {
 		context.blitSprite(
 				/*? if >=1.21.6 {*/ net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
-				 /*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
+				 /*?} elif >=1.21.2 {*/ /*net.minecraft.client.renderer.RenderType::guiTextured,
 				 *//*?}*/
 				sprite,
 				x,
@@ -60,7 +60,7 @@ public class DrawUtils {
 	public static void drawTexture(GuiGraphics context, ResourceLocation sprite, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
 		context.blit(
 				/*? if >=1.21.6 {*/ net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
-				/*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
+				/*?} elif >=1.21.2 {*/ /*net.minecraft.client.renderer.RenderType::guiTextured,
 				 *//*?}*/
 				sprite,
 				x,
@@ -75,7 +75,7 @@ public class DrawUtils {
 	}
 
 	public static void drawTooltip(GuiGraphics context, List<ClientTooltipComponent> list, int x, int y) {
-		context./*? if >=1.21.6 {*/ renderTooltip /*?} else {*/ /*drawTooltip *//*?}*/(
+		context./*? if >=1.21.6 {*/ renderTooltip /*?} else {*/ /*renderTooltipInternal *//*?}*/(
 				Minecraft.getInstance().font,
 				list,
 				x,

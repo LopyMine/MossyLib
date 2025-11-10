@@ -1,5 +1,7 @@
 license = "${mod_license}"
 issueTrackerURL = "https://github.com/LopyMine/${mod_id}"
+modLoader="javafml"
+loaderVersion="[1,)"
 
 [[mods]]
 modId = "${mod_id}"

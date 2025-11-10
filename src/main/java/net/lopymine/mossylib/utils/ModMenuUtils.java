@@ -36,7 +36,12 @@ public class ModMenuUtils {
 	}
 
 	public static ResourceLocation getContentId(String modId, SimpleContent content, String contentId) {
-		return ResourceLocation.fromNamespaceAndPath(modId, String.format("textures/config/%s.%s", contentId, content.getFileExtension()));
+		String format = String.format("textures/config/%s.%s", contentId, content.getFileExtension());
+		//? if >=1.21 {
+		return ResourceLocation.fromNamespaceAndPath(modId, format);
+		 //?} else {
+		/*return new ResourceLocation(modId, format);
+		*///?}
 	}
 
 	public static Component getModTitle(String modId) {

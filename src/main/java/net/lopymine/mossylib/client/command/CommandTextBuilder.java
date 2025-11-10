@@ -2,34 +2,37 @@ package net.lopymine.mossylib.client.command;
 
 import java.util.*;
 import net.lopymine.mossylib.MossyLib;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.ClickEvent.ChangePage;
-import net.minecraft.network.chat.ClickEvent.CopyToClipboard;
-import net.minecraft.network.chat.ClickEvent.Custom;
-import net.minecraft.network.chat.ClickEvent.OpenFile;
-import net.minecraft.network.chat.ClickEvent.OpenUrl;
-import net.minecraft.network.chat.ClickEvent.RunCommand;
-import net.minecraft.network.chat.ClickEvent.ShowDialog;
-import net.minecraft.network.chat.ClickEvent.SuggestCommand;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.HoverEvent.Action;
 import net.minecraft.network.chat.HoverEvent.EntityTooltipInfo;
-import net.minecraft.network.chat.HoverEvent.ShowEntity;
-import net.minecraft.network.chat.HoverEvent.ShowItem;
-import net.minecraft.network.chat.HoverEvent.ShowText;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.dialog.Dialog;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.ItemStack;
 
 //? if >=1.21.5 {
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Path;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.ClickEvent.ChangePage;
+import net.minecraft.network.chat.ClickEvent.CopyToClipboard;
+import net.minecraft.network.chat.ClickEvent.OpenFile;
+import net.minecraft.network.chat.ClickEvent.OpenUrl;
+import net.minecraft.network.chat.ClickEvent.RunCommand;
+import net.minecraft.network.chat.ClickEvent.SuggestCommand;
+import net.minecraft.network.chat.HoverEvent.ShowEntity;
+import net.minecraft.network.chat.HoverEvent.ShowItem;
+import net.minecraft.network.chat.HoverEvent.ShowText;
+//?}
+
+//? if >=1.21.6 {
+import net.minecraft.network.chat.ClickEvent.Custom;
+import net.minecraft.network.chat.ClickEvent.ShowDialog;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Holder;
+import net.minecraft.server.dialog.Dialog;
 //?}
 
 @SuppressWarnings("unused")

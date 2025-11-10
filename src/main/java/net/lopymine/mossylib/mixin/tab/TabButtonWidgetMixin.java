@@ -1,80 +1,53 @@
 package net.lopymine.mossylib.mixin.tab;
 
-//? if <=1.20.4 {
+//? if =1.20.1 {
 /*import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import net.lopymine.mossylib.gui.TransparencySprites;
 import net.lopymine.mossylib.utils.DrawUtils;
 import net.lopymine.mossylib.yacl.custom.MossyScreen;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-@Mixin(TabButtonWidget.class)
-public abstract class TabButtonWidgetMixin extends ClickableWidget {
+@Mixin(TabButton.class)
+public abstract class TabButtonWidgetMixin extends AbstractWidget {
 
-	public TabButtonWidgetMixin(int x, int y, int width, int height, Text message) {
+	public TabButtonWidgetMixin(int x, int y, int width, int height, Component message) {
 		super(x, y, width, height, message);
 	}
 
-	@Unique
-	private static final String RENDER_METHOD = /^? >=1.20.3 {^/ "renderWidget" /^?} else {^/ /^"renderButton" ^//^?}^/;
-	@Unique
-	private static final String WRAP_TARGET = /^? >=1.20.2 {^/ "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V" /^?} else {^/ /^"Lnet/minecraft/client/gui/DrawContext;drawNineSlicedTexture(Lnet/minecraft/util/Identifier;IIIIIIIIIIII)V" ^//^?}^/;
+	@Shadow public abstract boolean isSelected();
 
 
-	@Shadow
-	public abstract boolean isCurrentTab();
-
-	//? if <=1.20.1 {
-	/^@WrapOperation(at = @At(value = "INVOKE", target = WRAP_TARGET), method = "renderButton")
-	private void renderTransparencyTab1(DrawContext context, Identifier identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int k, int l, int u, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/ResourceLocation;IIIIIIIIIIII)V"), method = "renderWidget")
+	private void renderTransparencyTab1(GuiGraphics context, ResourceLocation ResourceLocation, int x, int y, int w, int h, int a, int b, int c, int d, int e, int k, int l, int u, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
-			original.call(context, identifier, x, y, w, h, a, b, c, d, e, k, l, u);
+			original.call(context, ResourceLocation, x, y, w, h, a, b, c, d, e, k, l, u);
 			return;
 		}
 
 		RenderSystem.enableBlend();
-		DrawUtils.drawGuiTexture(context, TransparencySprites.TAB_BUTTON_SPRITES.get(this.isCurrentTab(), this.isSelected()), x, y, this.width, this.height, 130, 24, 2);
+		DrawUtils.drawGuiTexture(context, TransparencySprites.TAB_BUTTON_SPRITES.get(this.isSelected(), this.isHoveredOrFocused()), x, y, this.width, this.height, 130, 24, 2);
 		RenderSystem.disableBlend();
 	}
-	^///?} else {
-	
-	@WrapOperation(at = @At(value = "INVOKE", target = WRAP_TARGET), method = RENDER_METHOD)
-	private void renderTransparencyTab2(DrawContext context, Identifier textureId, int x, int y, int width, int height, Operation<Void> original) {
-if (!MossyScreen.isMossyScreen()) {
-			original.call(context, textureId, x, y, width, height);
-			return;
-		}
 
-		RenderSystem.enableBlend();
-		context.drawGuiTexture(TransparencySprites.TAB_BUTTON_SPRITES.get(this.isCurrentTab(), this.isSelected()), x, y, width, height);
-		RenderSystem.disableBlend();
-	}
-	//?}
-
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/TabButtonWidget;drawCurrentTabLine(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/font/TextRenderer;I)V"), method = RENDER_METHOD)
-	private void renderTabBackground(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/ResourceLocation;IIIIIIIIIIII)V"), method = "renderWidget")
+	private void renderTabBackground(GuiGraphics context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
 		int left = this.getX() + 2;
 		int top = this.getY() + 2;
-		//? if >=1.20.3 {
-		int right = this.getRight() - 2;
-		int bottom = this.getBottom();
-		//?} else {
-		/^int right = (this.getX() + this.getWidth()) - 2;
+		int right = (this.getX() + this.getWidth()) - 2;
 		int bottom = (this.getY() + this.getHeight());
-		^///?}
 
 		RenderSystem.enableBlend();
-		context.drawTexture(TransparencySprites.getMenuListBackgroundTexture(), left, top, 0, 0, right - left, bottom - top);
+		context.blit(TransparencySprites.getMenuListBackgroundTexture(), left, top, 0, 0, right - left, bottom - top);
 		RenderSystem.disableBlend();
 	}
-
 
 }
 *///?}

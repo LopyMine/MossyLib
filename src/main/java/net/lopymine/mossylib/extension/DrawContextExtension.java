@@ -9,7 +9,7 @@ public class DrawContextExtension {
 		//? if >=1.21.6 {
 		context.pose().pushMatrix();
 		//?} else {
-		/*context.getMatrices().push();
+		/*context.pose().pushPose();
 		*///?}
 	}
 
@@ -17,7 +17,7 @@ public class DrawContextExtension {
 		//? if >=1.21.6 {
 		context.pose().popMatrix();
 		//?} else {
-		/*context.getMatrices().pop();
+		/*context.pose().popPose();
 		*///?}
 	}
 
@@ -28,7 +28,7 @@ public class DrawContextExtension {
 		}
 		context.pose().translate(x, y);
 		//?} else {
-		/*context.getMatrices().translate(x, y, z);
+		/*context.pose().translate(x, y, z);
 		 *///?}
 	}
 
@@ -36,7 +36,7 @@ public class DrawContextExtension {
 		//? if >=1.21.6 {
 		context.pose().scale(x, y);
 		//?} else {
-		/*context.getMatrices().scale(x, y, z);
+		/*context.pose().scale(x, y, z);
 		 *///?}
 	}
 
@@ -44,7 +44,7 @@ public class DrawContextExtension {
 		//? if >=1.21.6 {
 		context.pose().rotate(angle * ((float) Math.PI / 180F));
 		//?} else {
-		/*context.getMatrices().multiply(net.minecraft.util.math.RotationAxis.POSITIVE_Z.rotationDegrees(angle));
+		/*context.pose().mulPose(com.mojang.math.Axis.ZP.rotationDegrees(angle));
 		 *///?}
 	}
 
