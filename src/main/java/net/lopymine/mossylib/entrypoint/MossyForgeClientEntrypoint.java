@@ -1,21 +1,17 @@
 package net.lopymine.mossylib.entrypoint;
 
-//? if neoforge {
-/*import net.lopymine.mossylib.MossyLib;
+//? if forge {
 
-import net.lopymine.mossylib.client.MossyLibClient;
+/*import net.lopymine.mossylib.client.MossyLibClient;
 import net.lopymine.mossylib.modmenu.*;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.*;
-import net.neoforged.fml.common.Mod;
+import net.minecraftforge.fml.ModLoadingContext;
 
-@Mod(value = MossyLib.MOD_ID, dist = Dist.CLIENT)
 public class MossyForgeClientEntrypoint {
 
-	public MossyForgeClientEntrypoint(ModContainer container) {
+	public static void onInitializeClient() {
 		MossyLibClient.onInitializeClient();
 		MossyLibModMenuIntegration integration = new MossyLibModMenuIntegration();
-		integration.register(container);
+		integration.register(ModLoadingContext.get().getActiveContainer());
 	}
 
 }

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class AbstractWidgetMixin {
 
 	@Dynamic
-	@WrapOperation(method = "drawButtonRect", at = @At(value = "INVOKE", target = "Ldev/isxander/yacl3/gui/utils/YACLRenderHelper;renderButtonTexture(Lnet/minecraft/client/gui/GuiGraphics;IIIIZZ)V"))
+	@WrapOperation(method = "drawButtonRect", at = @At(value = "INVOKE", target = "Ldev/isxander/yacl3/gui/utils/YACLRenderHelper;renderButtonTexture(Lnet/minecraft/client/gui/GuiGraphics;IIIIZZ)V"), remap = false)
 	private void renderTransparencyWidget(GuiGraphics drawContext, int x, int y, int width, int height, boolean enabled, boolean hovered, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(drawContext, x, y, width, height, enabled, hovered);

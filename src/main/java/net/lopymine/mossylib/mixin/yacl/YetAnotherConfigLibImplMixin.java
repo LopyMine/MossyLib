@@ -19,7 +19,7 @@ public class YetAnotherConfigLibImplMixin implements SimpleYACLScreenConfig {
 	private YACLScreenConsumer consumer = null;
 
 	@Dynamic
-	@ModifyReturnValue(at = @At("RETURN"), method = "generateScreen")
+	@ModifyReturnValue(at = @At("RETURN"), method = "generateScreen", remap = false)
 	private Screen swapScreen(Screen original, @Local(argsOnly = true) Screen parent) {
 		if (this.consumer == null) {
 			return original;

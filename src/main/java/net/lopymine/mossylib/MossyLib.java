@@ -24,7 +24,7 @@ public class MossyLib {
 		//? if >=1.21 {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 		//?} else {
-		/*return new ResourceLocation(MOD_ID, path);
+		/*return ResourceLocation.tryBuild(MOD_ID, path);
 		*///?}
 	}
 
@@ -33,6 +33,6 @@ public class MossyLib {
 	}
 
 	public static void onInitialize() {
-		LOGGER.debug("{} Initialized", MOD_NAME);
+		LOGGER.info("{} Initialized", MOD_NAME);
 	}
 }

@@ -11,6 +11,8 @@ mossyDependencies {
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")
 
+	forge = prop("build.forge")
+
 	neoForge = prop("build.neoforge")
 	parchment = prop("build.parchment")
 
@@ -19,19 +21,8 @@ mossyDependencies {
 	}
 }
 
-if (stonecutter.current.project.contains("forge")) {
+if (stonecutter.current.project.startsWith("forge")) {
 
-}
-
-repositories {
-	exclusiveContent {
-		forRepository {
-			maven {
-				url = "https://thedarkcolour.github.io/KotlinForForge/"
-			}
-		}
-		filter { includeGroup("thedarkcolour") }
-	}
 }
 
 publishing {
