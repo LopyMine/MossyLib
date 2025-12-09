@@ -1,0 +1,1 @@
+- Fixed texture rendering 
