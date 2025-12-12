@@ -22,7 +22,9 @@ jobs:
           distribution: 'microsoft'
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
-      - name: build
+      - name: build fabric
+        run: ./gradlew buildAndCollect+fabric+All
+      - name: build forge
         run: ./gradlew buildAndCollect+forge+All
       - name: capture build artifacts
         if: ${{ matrix.java == '21' }} # Only upload artifacts built from latest java
