@@ -4,6 +4,7 @@ package net.lopymine.mossylib.utils;
 /*import com.mojang.blaze3d.systems.RenderSystem;
 *///?}
 
+@SuppressWarnings("unused")
 public class RenderUtils {
 
 	public static void enableBlend() {

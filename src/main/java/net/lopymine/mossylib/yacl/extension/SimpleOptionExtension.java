@@ -1,10 +1,9 @@
 package net.lopymine.mossylib.yacl.extension;
 
 import dev.isxander.yacl3.api.controller.*;
-import net.minecraft.text.Text;
-
 import net.lopymine.mossylib.yacl.api.SimpleOption.Builder;
 import net.lopymine.mossylib.yacl.utils.EnumWithText;
+import net.minecraft.network.chat.Component;
 import net.lopymine.mossylib.utils.ModMenuUtils;
 
 import java.util.function.Function;
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("unused")
 public class SimpleOptionExtension {
 
-	public static final Function<Boolean, Text> ENABLED_OR_DISABLED_FORMATTER = ModMenuUtils.getEnabledOrDisabledFormatter();
+	public static final Function<Boolean, Component> ENABLED_OR_DISABLED_FORMATTER = ModMenuUtils.getEnabledOrDisabledFormatter();
 
 	//
 
@@ -35,7 +34,7 @@ public class SimpleOptionExtension {
 		return withController(builder, ENABLED_OR_DISABLED_FORMATTER);
 	}
 
-	public static Builder<Boolean> withController(Builder<Boolean> builder, @Nullable Function<Boolean, Text> valueFormatter) {
+	public static Builder<Boolean> withController(Builder<Boolean> builder, @Nullable Function<Boolean, Component> valueFormatter) {
 		builder.getOptionBuilder().controller((o) -> {
 			BooleanControllerBuilder b = BooleanControllerBuilder.create(o).coloured(true);
 			if (valueFormatter != null) {
@@ -56,7 +55,7 @@ public class SimpleOptionExtension {
 		return withController(builder, min, max, step, slider, null);
 	}
 
-	public static Builder<Double> withController(Builder<Double> builder, double min, double max, double step, boolean slider, @Nullable Function<Double, Text> valueFormatter) {
+	public static Builder<Double> withController(Builder<Double> builder, double min, double max, double step, boolean slider, @Nullable Function<Double, Component> valueFormatter) {
 		builder.getOptionBuilder().controller((o) -> {
 			ValueFormattableController<Double, ?> b = slider ?
 					DoubleSliderControllerBuilder.create(o).range(min, max).step(step)
@@ -80,7 +79,7 @@ public class SimpleOptionExtension {
 		return withController(builder, min, max, step, slider, null);
 	}
 
-	public static Builder<Float> withController(Builder<Float> builder, float min, float max, float step, boolean slider, @Nullable Function<Float, Text> valueFormatter) {
+	public static Builder<Float> withController(Builder<Float> builder, float min, float max, float step, boolean slider, @Nullable Function<Float, Component> valueFormatter) {
 		builder.getOptionBuilder().controller((o) -> {
 			ValueFormattableController<Float, ?> b = slider ?
 					FloatSliderControllerBuilder.create(o).range(min, max).step(step)
@@ -104,7 +103,7 @@ public class SimpleOptionExtension {
 		return withController(builder, min, max, step, slider, null);
 	}
 
-	public static Builder<Integer> withController(Builder<Integer> builder, int min, int max, int step, boolean slider, @Nullable Function<Integer, Text> valueFormatter) {
+	public static Builder<Integer> withController(Builder<Integer> builder, int min, int max, int step, boolean slider, @Nullable Function<Integer, Component> valueFormatter) {
 		builder.getOptionBuilder().controller((o) -> {
 			ValueFormattableController<Integer, ?> b = slider ?
 					IntegerSliderControllerBuilder.create(o).range(min, max).step(step)

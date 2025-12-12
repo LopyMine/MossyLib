@@ -6,8 +6,8 @@ import java.util.*;
 import java.util.function.Consumer;
 import net.lopymine.mossylib.utils.ModMenuUtils;
 import net.lopymine.mossylib.yacl.api.SimpleOption.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -51,8 +51,8 @@ public class SimpleGroup {
 
 	public OptionGroup build(String modId) {
 		String groupKey = ModMenuUtils.getGroupKey(this.groupId);
-		Text groupName = ModMenuUtils.getName(modId, groupKey).formatted(Formatting.BOLD);
-		Text description = ModMenuUtils.getDescription(modId, groupKey);
+		Component groupName = ModMenuUtils.getName(modId, groupKey).withStyle(ChatFormatting.BOLD);
+		Component description = ModMenuUtils.getDescription(modId, groupKey);
 
 		OptionDescription.Builder descriptionBuilder = OptionDescription.createBuilder();
 		descriptionBuilder.text(description);

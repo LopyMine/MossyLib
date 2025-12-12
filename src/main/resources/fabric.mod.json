@@ -16,10 +16,10 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-	        "net.lopymine.mossylib.MossyLib"
+	        "net.lopymine.mossylib.entrypoint.MossyLibFabricEntrypoint"
         ],
         "client": [
-	        "net.lopymine.mossylib.client.MossyLibClient"
+	        "net.lopymine.mossylib.entrypoint.MossyLibFabricClientEntrypoint"
         ],
         "modmenu": [
 	        "net.lopymine.mossylib.modmenu.MossyLibModMenuIntegration"
@@ -31,10 +31,9 @@
         "java": ">=${java}",
         "${fabric_api_id}": "*"
     },
-    "accessWidener": "aws/${minecraft}.accesswidener",
+    "accessWidener": "aws/fabric-${minecraft}.accesswidener",
     "mixins": [
-        "${mod_id}.mixins.json",
-        "${mod_id}-yacl.mixins.json"
+        "${fabric_trick_mixin_configs}"
     ],
 	"custom": {
 		"modmenu": {

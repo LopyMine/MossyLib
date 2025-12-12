@@ -6,8 +6,7 @@ import dev.isxander.yacl3.gui.YACLScreen;
 import net.lopymine.mossylib.utils.yacl.SimpleYACLScreenBuilder;
 import net.lopymine.mossylib.yacl.custom.MossyLibYACLScreen;
 import net.lopymine.mossylib.yacl.utils.YACLScreenConsumer;
-import net.minecraft.client.gui.screen.Screen;
-
+import net.minecraft.client.gui.screens.Screen;
 import net.lopymine.mossylib.utils.ModMenuUtils;
 
 import java.util.function.Consumer;

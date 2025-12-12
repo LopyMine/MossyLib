@@ -1,12 +1,12 @@
 package net.lopymine.mossylib.config;
 
 import lombok.*;
+import net.lopymine.mossylib.loader.MossyLoader;
 import net.lopymine.mossylib.utils.*;
 import org.slf4j.*;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.loader.api.FabricLoader;
 
 import net.lopymine.mossylib.MossyLib;
 
@@ -24,7 +24,7 @@ public class MossyConfig {
 			option("mossy", false, Codec.BOOL, MossyConfig::isMossy)
 	).apply(instance, MossyConfig::new));
 
-	private static final File CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve(MossyLib.MOD_ID + ".json5").toFile();
+	private static final File CONFIG_FILE = MossyLoader.getConfigDir().resolve(MossyLib.MOD_ID + ".json5").toFile();
 	private static final Logger LOGGER = LoggerFactory.getLogger(MossyLib.MOD_NAME + "/Config");
 	private static MossyConfig INSTANCE;
 	

@@ -2,7 +2,7 @@ package net.lopymine.mossylib.modmenu;
 
 import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.yacl.MossyTestYACLConfigurationScreen;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 
 public class MossyLibModMenuIntegration extends AbstractModMenuIntegration {
 
@@ -16,3 +16,4 @@ public class MossyLibModMenuIntegration extends AbstractModMenuIntegration {
 		return MossyTestYACLConfigurationScreen.createTestScreen(parent);
 	}
 }
+
