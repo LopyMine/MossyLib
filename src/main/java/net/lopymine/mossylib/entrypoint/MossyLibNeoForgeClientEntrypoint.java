@@ -10,9 +10,9 @@ import net.neoforged.fml.*;
 import net.neoforged.fml.common.Mod;
 
 @Mod(value = MossyLib.MOD_ID, dist = Dist.CLIENT)
-public class MossyNeoForgeClientEntrypoint {
+public class MossyLibNeoForgeClientEntrypoint {
 
-	public MossyNeoForgeClientEntrypoint(ModContainer container) {
+	public MossyLibNeoForgeClientEntrypoint(ModContainer container) {
 		MossyLibClient.onInitializeClient();
 		MossyLibModMenuIntegration integration = new MossyLibModMenuIntegration();
 		integration.register(container);

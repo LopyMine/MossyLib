@@ -7,9 +7,9 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(MossyLib.MOD_ID)
-public class MossyForgeEntrypoint {
+public class MossyLibForgeEntrypoint {
 
-	public MossyForgeEntrypoint() {
+	public MossyLibForgeEntrypoint() {
 		MossyLib.onInitialize();
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> MossyForgeClientEntrypoint::onInitializeClient);
 	}

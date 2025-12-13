@@ -6,7 +6,7 @@ package net.lopymine.mossylib.entrypoint;
 import net.lopymine.mossylib.modmenu.*;
 import net.minecraftforge.fml.ModLoadingContext;
 
-public class MossyForgeClientEntrypoint {
+public class MossyLibForgeClientEntrypoint {
 
 	public static void onInitializeClient() {
 		MossyLibClient.onInitializeClient();

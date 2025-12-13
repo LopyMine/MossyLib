@@ -21,10 +21,6 @@ mossyDependencies {
 	}
 }
 
-if (stonecutter.current.project.startsWith("forge")) {
-
-}
-
 publishing {
 	repositories {
 		maven {

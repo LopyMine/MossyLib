@@ -6,9 +6,9 @@ package net.lopymine.mossylib.entrypoint;
 import net.neoforged.fml.common.Mod;
 
 @Mod(MossyLib.MOD_ID)
-public class MossyNeoForgeEntrypoint {
+public class MossyLibNeoForgeEntrypoint {
 
-	public MossyNeoForgeEntrypoint() {
+	public MossyLibNeoForgeEntrypoint() {
 		MossyLib.onInitialize();
 	}
 
