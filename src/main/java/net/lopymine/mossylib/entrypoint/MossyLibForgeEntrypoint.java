@@ -11,7 +11,7 @@ public class MossyLibForgeEntrypoint {
 
 	public MossyLibForgeEntrypoint() {
 		MossyLib.onInitialize();
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> MossyForgeClientEntrypoint::onInitializeClient);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> MossyLibForgeClientEntrypoint::onInitializeClient);
 	}
 
 }

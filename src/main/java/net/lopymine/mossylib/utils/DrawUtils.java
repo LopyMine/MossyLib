@@ -7,7 +7,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -46,7 +46,7 @@ public class DrawUtils {
 	//?}
 
 	//? if >=1.21 {
-	public static void drawGuiTexture(GuiGraphics context, ResourceLocation sprite, int x, int y, int width, int height) {
+	public static void drawGuiTexture(GuiGraphics context, Identifier sprite, int x, int y, int width, int height) {
 		context.blitSprite(
 				/*? if >=1.21.6 {*/ net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
 				 /*?} elif >=1.21.2 {*/ /*net.minecraft.client.renderer.RenderType::guiTextured,
@@ -60,7 +60,7 @@ public class DrawUtils {
 	}
 	//?}
 
-	public static void drawTexture(GuiGraphics context, ResourceLocation sprite, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+	public static void drawTexture(GuiGraphics context, Identifier sprite, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
 		context.blit(
 				/*? if >=1.21.6 {*/ net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
 				/*?} elif >=1.21.2 {*/ /*net.minecraft.client.renderer.RenderType::guiTextured,
@@ -88,7 +88,21 @@ public class DrawUtils {
 		);
 	}
 
+	// old
 	public static void drawCenteredText(GuiGraphics context, int x, int y, int width, Component text) {
+		drawCenteredText(context, text, x, y, width);
+	}
+
+	public static void drawText(GuiGraphics context, int x, int y, int width, Component text) {
+		drawText(context, text, x, y, width, 0);
+	}
+	// old
+
+	public static void drawCenteredText(GuiGraphics context, Component text, int x, int y, int width) {
+		drawCenteredText(context, text, x, y, width, 0);
+	}
+
+	public static void drawCenteredText(GuiGraphics context, Component text, int x, int y, int width, int height) {
 		Font textRenderer = Minecraft.getInstance().font;
 		int textWidth = textRenderer.width(text);
 
@@ -97,19 +111,32 @@ public class DrawUtils {
 		int end = centerX + (textWidth / 2);
 
 		if (start < x || end > x + width) {
-			AbstractWidget.renderScrollingString(context, textRenderer, text, x, y, x + width, y + textRenderer.lineHeight, -1);
+			drawScrollableText(context, x, y, width, height, text);
 		} else {
-			context.drawString(textRenderer, text, start, y, -1, true);
+			context.drawString(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
 		}
 	}
 
-	public static void drawText(GuiGraphics context, int x, int y, int width, Component text) {
+	public static void drawText(GuiGraphics context, Component text, int x, int y, int width) {
+		drawText(context, text, x, y, width, 0);
+	}
+
+	public static void drawText(GuiGraphics context, Component text, int x, int y, int width, int height) {
 		Font textRenderer = Minecraft.getInstance().font;
 		int textWidth = textRenderer.width(text);
 		if (x + textWidth > x + width) {
-			AbstractWidget.renderScrollingString(context, textRenderer, text, x, y, x + width, y + textRenderer.lineHeight, -1);
+			drawScrollableText(context, x, y, width, height, text);
 		} else {
-			context.drawString(textRenderer, text, x, y, -1, true);
+			context.drawString(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
 		}
+	}
+
+	private static void drawScrollableText(GuiGraphics context, int x, int y, int width, int height, Component text) {
+		//? if >=1.21.11 {
+		context.textRenderer().acceptScrollingWithDefaultCenter(text, x, x + width, y, y + height);
+		//?} else {
+		/*Font textRenderer = Minecraft.getInstance().font;
+		AbstractWidget.renderScrollingString(context, textRenderer, text, x, y, x + width, y + height, -1);
+		*///?}
 	}
 }

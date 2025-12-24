@@ -10,7 +10,7 @@ import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -24,9 +24,18 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 		super(x, y, width, height, message);
 	}
 
-	//? if >=1.21.6 {
+	//? if >=1.21.11 {
+	@WrapOperation(method = "renderDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, w, h, c);
+			return;
+		}
+		BackgroundRenderer.drawWidgetBackground(instance, x, y, w, h, this.active, this.isHoveredOrFocused());
+	}
+	//?} elif >=1.21.6 {
 
-	@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/ResourceLocation;IIIII)V"))
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/ResourceLocation;IIIII)V"))
 	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, ResourceLocation identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, width, height, color);
@@ -35,7 +44,7 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.active, this.isHoveredOrFocused());
 	}
 
-	//?} elif >=1.21.2 {
+	*///?} elif >=1.21.2 {
 	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIIII)V"))
 	private void renderTransparencyWidget(GuiGraphics instance, Function<?, ?> function, ResourceLocation identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {

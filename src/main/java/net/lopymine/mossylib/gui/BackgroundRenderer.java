@@ -5,7 +5,7 @@ import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.extension.DrawContextExtension;
 import net.lopymine.mossylib.utils.*;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 @SuppressWarnings("unused")
 @ExtensionMethod(DrawContextExtension.class)
@@ -51,12 +51,12 @@ public class BackgroundRenderer {
 	}
 
 	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, boolean list, boolean up, boolean bottom, boolean right, boolean left) {
-		ResourceLocation menuBackgroundTexture = list ? TransparencySprites.getMenuListBackgroundTexture() : TransparencySprites.getMenuBackgroundTexture();
-		ResourceLocation menuSeparatorTexture = TransparencySprites.getMenuSeparatorTexture();
+		Identifier menuBackgroundTexture = list ? TransparencySprites.getMenuListBackgroundTexture() : TransparencySprites.getMenuBackgroundTexture();
+		Identifier menuSeparatorTexture = TransparencySprites.getMenuSeparatorTexture();
 		drawTransparencyBackground(context, x, y, width, height, menuBackgroundTexture, menuSeparatorTexture, up, bottom, right, left);
 	}
 
-	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, ResourceLocation backgroundTexture, ResourceLocation separatorTexture, boolean up, boolean bottom, boolean right, boolean left) {
+	public static void drawTransparencyBackground(GuiGraphics context, int x, int y, int width, int height, Identifier backgroundTexture, Identifier separatorTexture, boolean up, boolean bottom, boolean right, boolean left) {
 		RenderUtils.enableBlend();
 
 		// BACKGROUND

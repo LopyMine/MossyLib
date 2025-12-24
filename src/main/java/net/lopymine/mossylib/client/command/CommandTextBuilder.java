@@ -30,7 +30,7 @@ import net.minecraft.network.chat.HoverEvent.ShowText;
 //? if >=1.21.6 {
 import net.minecraft.network.chat.ClickEvent.Custom;
 import net.minecraft.network.chat.ClickEvent.ShowDialog;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.Holder;
 import net.minecraft.server.dialog.Dialog;
 //?}
@@ -132,7 +132,7 @@ public class CommandTextBuilder {
 				yield new OpenFile((String) value);
 			}
 			//? if >=1.21.6 {
-			case CUSTOM -> new Custom((ResourceLocation) value, Optional.empty());
+			case CUSTOM -> new Custom((Identifier) value, Optional.empty());
 			case SHOW_DIALOG -> new ShowDialog((Holder<Dialog>) value);
 			//?}
 		};

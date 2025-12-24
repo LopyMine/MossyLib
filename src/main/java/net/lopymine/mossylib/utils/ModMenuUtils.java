@@ -3,7 +3,7 @@ package net.lopymine.mossylib.utils;
 import net.lopymine.mossylib.MossyLib;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.lopymine.mossylib.yacl.api.SimpleContent;
 
 import java.util.function.Function;
@@ -35,10 +35,10 @@ public class ModMenuUtils {
 		return text(modId,key + ".description");
 	}
 
-	public static ResourceLocation getContentId(String modId, SimpleContent content, String contentId) {
+	public static Identifier getContentId(String modId, SimpleContent content, String contentId) {
 		String format = String.format("textures/config/%s.%s", contentId, content.getFileExtension());
 		//? if >=1.21 {
-		return ResourceLocation.fromNamespaceAndPath(modId, format);
+		return Identifier.fromNamespaceAndPath(modId, format);
 		 //?} else {
 		/*return new ResourceLocation(modId, format);
 		*///?}

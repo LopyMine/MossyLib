@@ -11,7 +11,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -29,8 +29,8 @@ public abstract class TextFieldWidgetMixin extends AbstractWidget implements Ren
 	protected abstract boolean isEditable();
 
 	//? if >=1.21.6 {
-	@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/ResourceLocation;IIII)V"))
-	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, ResourceLocation identifier, int x, int y, int width, int height, Operation<Void> original) {
+	@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"))
+	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, width, height);
 			return;

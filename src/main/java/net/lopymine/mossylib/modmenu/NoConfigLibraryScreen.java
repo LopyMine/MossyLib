@@ -2,7 +2,8 @@ package net.lopymine.mossylib.modmenu;
 
 import com.google.common.collect.Sets;
 import net.minecraft.SharedConstants;
-import net.minecraft.Util;
+import net.minecraft.util.*;
+import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
