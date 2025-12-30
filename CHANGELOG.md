@@ -1,1 +1,2 @@
-- Support for 1.21.11
+- Little fix for config options
+- More methods

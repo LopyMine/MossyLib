@@ -28,6 +28,8 @@ stonecutter {
 	}
 }
 
+stonecutter.filters.exclude("**/*.accesswidener")
+
 publishing {
 	repositories {
 		maven {

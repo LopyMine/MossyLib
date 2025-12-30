@@ -15,6 +15,10 @@ public class MossyLoader {
 	public static Path getConfigDir() {
 		return FabricLoader.getInstance().getConfigDir();
 	}
+
+	public static boolean isDevelopmentEnvironment() {
+		return FabricLoader.getInstance().isDevelopmentEnvironment();
+	}
 }
 //?} elif neoforge {
 
@@ -31,8 +35,8 @@ public class MossyLoader {
 			//? if >=1.21.10 {
 			return FMLLoader.getCurrent().getLoadingModList().getModFileById(modid) != null;
 			//?} else {
-			/^return FMLLoader.getLoadingModList().getModFileById(modid) != null;
-			^///?}
+			return FMLLoader.getLoadingModList().getModFileById(modid) != null;
+			//?}
 		} else {
 			return ModList.get().isLoaded(modid);
 		}
@@ -41,12 +45,20 @@ public class MossyLoader {
 	public static Path getConfigDir() {
 		return FMLPaths.CONFIGDIR.get();
 	}
+
+	public static boolean isDevelopmentEnvironment() {
+		//? if >=1.21.10 {
+		return !FMLLoader.getCurrent().isProduction();
+		//?} else {
+		return !FMLLoader.isProduction();
+		//?}
+	}
 }
 *///?} elif forge {
 
 /*import java.nio.file.Path;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.*;
 
 @SuppressWarnings("unused")
 public class MossyLoader {
@@ -60,7 +72,11 @@ public class MossyLoader {
 	}
 
 	public static Path getConfigDir() {
-		return net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR.get();
+		return FMLPaths.CONFIGDIR.get();
+	}
+
+	public static boolean isDevelopmentEnvironment() {
+		return !FMLLoader.isProduction();
 	}
 }
 *///?}

@@ -32,8 +32,8 @@ public abstract class EntryListWidgetMixin  {
 	^///?}
 
 	//? if >=1.21 {
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 0), method = RENDER_METHOD)
-	private void renderTransparencyScrollerBackground(GuiGraphics context, ResourceLocation texture, int x, int y, int width, int height, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 0), method = RENDER_METHOD)
+	private void renderTransparencyScrollerBackground(GuiGraphics context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, texture, x, y, width, height);
 			return;
@@ -41,8 +41,8 @@ public abstract class EntryListWidgetMixin  {
 		original.call(context, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, x, y, width, height);
 	}
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 1), method = RENDER_METHOD)
-	private void renderTransparencyScroller(GuiGraphics context, ResourceLocation texture, int x, int y, int width, int height, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 1), method = RENDER_METHOD)
+	private void renderTransparencyScroller(GuiGraphics context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, texture, x, y, width, height);
 			return;
