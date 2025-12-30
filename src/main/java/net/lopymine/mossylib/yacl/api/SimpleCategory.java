@@ -58,6 +58,8 @@ public class SimpleCategory {
 			builder.group(group.build(modId));
 		}
 
+		this.custom.accept(builder);
+
 		return builder.name(categoryName).build();
 	}
 }
