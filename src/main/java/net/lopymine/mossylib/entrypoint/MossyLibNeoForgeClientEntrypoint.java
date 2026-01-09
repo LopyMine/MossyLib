@@ -14,7 +14,7 @@ public class MossyLibNeoForgeClientEntrypoint {
 
 	public MossyLibNeoForgeClientEntrypoint(ModContainer container) {
 		MossyLibClient.onInitializeClient();
-		MossyLibModMenuIntegration integration = new MossyLibModMenuIntegration();
+		TestMossyLibModMenuIntegration integration = new TestMossyLibModMenuIntegration();
 		integration.register(container);
 	}
 

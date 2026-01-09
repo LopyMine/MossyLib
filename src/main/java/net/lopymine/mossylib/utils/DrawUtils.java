@@ -18,7 +18,7 @@ public class DrawUtils {
 	public static int width = 256;
 	public static int height = 256;
 
-	public static void drawGuiTexture(GuiGraphics context, ResourceLocation sprite, int x, int y, int width, int height, int textureWidth, int textureHeight, int border) {
+	public static void drawGuiTexture(GuiGraphics context, Identifier sprite, int x, int y, int width, int height, int textureWidth, int textureHeight, int border) {
 		DrawUtils.width = textureWidth;
 		DrawUtils.height = textureHeight;
 		DrawUtils.drawing = true;

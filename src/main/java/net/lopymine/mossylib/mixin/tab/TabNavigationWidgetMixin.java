@@ -7,7 +7,7 @@ import net.lopymine.mossylib.gui.TransparencySprites;
 import net.lopymine.mossylib.yacl.custom.MossyScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.tabs.TabNavigationBar;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -16,8 +16,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 @Mixin(TabNavigationBar.class)
 public class TabNavigationWidgetMixin {
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V"), method = "render")
-	private void renderTransparencyHeaderSeparator(GuiGraphics context, ResourceLocation textureId, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/Identifier;IIFFIIII)V"), method = "render")
+	private void renderTransparencyHeaderSeparator(GuiGraphics context, Identifier textureId, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, textureId, x, y, u, v, width, height, textureWidth, textureHeight);
 			return;

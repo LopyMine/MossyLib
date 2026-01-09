@@ -10,6 +10,7 @@ public class MossyLib {
 	public static final String MOD_NAME = /*$ mod_name*/ "MossyLib";
 	public static final String MOD_ID = /*$ mod_id*/ "mossylib";
 	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.8.1+1.21.11-fabric";
+
 	public static final MossyLogger LOGGER = new MossyLogger(MOD_NAME);
 
 	public static Identifier spriteId(String path) {
@@ -24,7 +25,7 @@ public class MossyLib {
 		//? if >=1.21 {
 		return Identifier.fromNamespaceAndPath(MOD_ID, path);
 		//?} else {
-		/*return ResourceLocation.tryBuild(MOD_ID, path);
+		/*return Identifier.tryBuild(MOD_ID, path);
 		*///?}
 	}
 

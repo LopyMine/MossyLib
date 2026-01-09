@@ -38,8 +38,8 @@ public abstract class TextFieldWidgetMixin extends AbstractWidget implements Ren
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.isEditable() && this.active, this.isHoveredOrFocused());
 	}
 	//?} elif >=1.21.2 {
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V"))
-	private void renderTransparencyWidget1(GuiGraphics instance, Function<?, ?> function, ResourceLocation identifier, int x, int y, int width, int height, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/Identifier;IIII)V"))
+	private void renderTransparencyWidget1(GuiGraphics instance, Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, function, identifier, x, y, width, height);
 			return;
@@ -48,8 +48,8 @@ public abstract class TextFieldWidgetMixin extends AbstractWidget implements Ren
 	}
 	*///?} elif >=1.20.2 {
 
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V"))
-	private void renderTransparencyWidget1(GuiGraphics instance, ResourceLocation identifier, int x, int y, int width, int height, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V"))
+	private void renderTransparencyWidget1(GuiGraphics instance, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, identifier, x, y, width, height);
 			return;

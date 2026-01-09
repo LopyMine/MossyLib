@@ -34,8 +34,8 @@ public class ScrollableWidgetMixin {
 		original.call(instance, renderPipeline, TransparencySprites.SCROLLER_SPRITE, x, y, width, height);
 	}
 	//?} else {
-	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 0), method = "renderScrollbar")
-	private void renderTransparencyScrollerBackground(GuiGraphics context, java.util.function.Function<?, ?> function, ResourceLocation identifier, int x, int y, int width, int height, Operation<Void> original) {
+	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 0), method = "renderScrollbar")
+	private void renderTransparencyScrollerBackground(GuiGraphics context, java.util.function.Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, function, identifier, x, y, width, height);
 			return;
@@ -43,8 +43,8 @@ public class ScrollableWidgetMixin {
 		original.call(context, function, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, x, y, width, height);
 	}
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 1), method = "renderScrollbar")
-	private void renderTransparencyScroller(GuiGraphics context, java.util.function.Function<?, ?> function, ResourceLocation identifier, int x, int y, int width, int height, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 1), method = "renderScrollbar")
+	private void renderTransparencyScroller(GuiGraphics context, java.util.function.Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, function, identifier, x, y, width, height);
 			return;

@@ -3,7 +3,7 @@ package net.lopymine.mossylib.mixin;
 //? <=1.21.3 {
 
 /*import net.minecraft.client.gui.components.AbstractSelectionList;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.*;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.*;

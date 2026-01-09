@@ -40,7 +40,7 @@ public class ModMenuUtils {
 		//? if >=1.21 {
 		return Identifier.fromNamespaceAndPath(modId, format);
 		 //?} else {
-		/*return new ResourceLocation(modId, format);
+		/*return new Identifier(modId, format);
 		*///?}
 	}
 

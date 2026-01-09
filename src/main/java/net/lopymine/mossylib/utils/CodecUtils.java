@@ -18,7 +18,7 @@ public final class CodecUtils {
 		//? if >=1.21 {
 		return Codec.recursive(name, wrapped);
 		//?} else {
-		/*return new RecursiveCodec<>(name, wrapped);
+		/*return new net.lopymine.mossylib.utils.codec.RecursiveCodec<>(name, wrapped);
 		 *///?}
 	}
 
@@ -26,7 +26,7 @@ public final class CodecUtils {
 		try {
 			return codec.decode(JsonOps.INSTANCE, /*? <=1.17.1 {*//*new JsonParser().parse("{}")*//*?} else {*/JsonParser.parseString("{}")/*?}*/)/*? if >=1.20.5 {*/.getOrThrow()/*?} else {*//*.getOrThrow(false, MossyLibClient.LOGGER::error)*//*?}*/.getFirst();
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Failed to create new instance of config in the %s mod".formatted(MossyLib.MOD_NAME), e);
+			throw new IllegalArgumentException("Failed to create new config instance for the %s mod. Usually this happens when there is option with no default value, please report this to the mod author.".formatted(MossyLib.MOD_NAME), e);
 		}
 	}
 

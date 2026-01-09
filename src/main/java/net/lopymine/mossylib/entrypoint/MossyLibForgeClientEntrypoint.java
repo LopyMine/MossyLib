@@ -10,7 +10,7 @@ public class MossyLibForgeClientEntrypoint {
 
 	public static void onInitializeClient() {
 		MossyLibClient.onInitializeClient();
-		MossyLibModMenuIntegration integration = new MossyLibModMenuIntegration();
+		TestMossyLibModMenuIntegration integration = new TestMossyLibModMenuIntegration();
 		integration.register(ModLoadingContext.get().getActiveContainer());
 	}
 

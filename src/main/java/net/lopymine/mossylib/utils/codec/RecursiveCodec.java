@@ -1,4 +1,4 @@
-package net.lopymine.mossylib.utils;
+package net.lopymine.mossylib.utils.codec;
 
 //? if <1.21 {
 

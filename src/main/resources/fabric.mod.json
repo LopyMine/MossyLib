@@ -22,7 +22,7 @@
 	        "net.lopymine.mossylib.entrypoint.MossyLibFabricClientEntrypoint"
         ],
         "modmenu": [
-	        "net.lopymine.mossylib.modmenu.MossyLibModMenuIntegration"
+	        "net.lopymine.mossylib.modmenu.TestMossyLibModMenuIntegration"
         ]
     },
     "depends": {

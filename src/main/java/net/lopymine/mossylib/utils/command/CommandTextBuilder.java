@@ -1,7 +1,6 @@
-package net.lopymine.mossylib.client.command;
+package net.lopymine.mossylib.utils.command;
 
 import java.util.*;
-import net.lopymine.mossylib.MossyLib;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
@@ -39,14 +38,16 @@ import net.minecraft.server.dialog.Dialog;
 public class CommandTextBuilder {
 
 	private final String key;
+	private final String modId;
 	private final MutableComponent text;
 
-	private CommandTextBuilder(String key, Object... args) {
+	private CommandTextBuilder(String key, String modId, Object... args) {
 		this.key  = key;
-		this.text = CommandTextBuilder.translatable(key, args);
+		this.modId = modId;
+		this.text = CommandTextBuilder.translatable(key, modId, args);
 	}
 
-	private static MutableComponent translatable(String key, Object... args) {
+	private static MutableComponent translatable(String key, String modId, Object... args) {
 		for (int i = 0; i < args.length; ++i) {
 			Object object = args[i];
 			if (!isPrimitive(object) && !(object instanceof Component)) {
@@ -54,15 +55,15 @@ public class CommandTextBuilder {
 			}
 		}
 
-		return Component.literal(MossyLib.text(key, args).getString().replace("&", "§"));
+		return Component.literal(Component.translatable(String.format("%s.%s", modId, key), args).getString().replace("&", "§"));
 	}
 
 	private static boolean isPrimitive(Object object) {
 		return object instanceof Number || object instanceof Boolean || object instanceof String;
 	}
 
-	public static CommandTextBuilder startBuilder(String key, Object... args) {
-		return new CommandTextBuilder("command." + key, args);
+	public static CommandTextBuilder startBuilder(String key, String modId, Object... args) {
+		return new CommandTextBuilder("command." + key, modId, args);
 	}
 
 	public CommandTextBuilder withShowEntity(EntityType<?> type, UUID uuid, String name) {
@@ -75,7 +76,7 @@ public class CommandTextBuilder {
 	}
 
 	public CommandTextBuilder withHoverText(Object... args) {
-		MutableComponent hoverText = CommandTextBuilder.translatable(this.key + ".hover_text", args);
+		MutableComponent hoverText = CommandTextBuilder.translatable(this.key + ".hover_text", this.modId, args);
 		HoverEvent hoverEvent = getHoverEvent(Action.SHOW_TEXT, hoverText);
 		return this.withHoverEvent(hoverEvent);
 	}
