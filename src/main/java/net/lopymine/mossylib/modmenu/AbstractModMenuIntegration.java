@@ -1,7 +1,7 @@
 package net.lopymine.mossylib.modmenu;
 
 //? if fabric {
-import com.terraformersmc.modmenu.api.*;
+/*import com.terraformersmc.modmenu.api.*;
 import net.fabricmc.loader.api.*;
 import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.client.MossyLibClient;
@@ -33,9 +33,9 @@ public abstract class AbstractModMenuIntegration implements ModMenuApi {
 	protected abstract Screen createConfigScreen(Screen parent);
 }
 
-//?} elif neoforge {
+*///?} elif neoforge {
 
-/*import net.neoforged.fml.*;
+import net.neoforged.fml.*;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.client.MossyLibClient;
@@ -70,7 +70,7 @@ public abstract class AbstractModMenuIntegration {
 
 }
 
-*///?} elif forge {
+//?} elif forge {
 
 /*import net.lopymine.mossylib.MossyLib;
 import net.lopymine.mossylib.client.MossyLibClient;

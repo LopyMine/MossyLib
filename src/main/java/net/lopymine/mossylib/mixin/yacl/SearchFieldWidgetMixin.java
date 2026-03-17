@@ -13,7 +13,16 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(SearchFieldWidget.class)
 public class SearchFieldWidgetMixin {
 
-	//? if >=1.21.6 {
+	//? if >=26.1 {
+	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)V"), method = "extractWidgetRenderState")
+	private void swapColor(GuiGraphics instance, Font textRenderer, Component text, int x, int y, int color, boolean shadow, Operation<Integer> original) {
+		if (MossyScreen.isMossyScreen()) {
+			original.call(instance, textRenderer, text, x, y, -1, shadow);
+			return;
+		}
+		original.call(instance, textRenderer, text, x, y, color, shadow);
+	}
+ 	*///?} elif >=1.21.6 {
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)V"), method = "renderWidget")
 	private void swapColor(GuiGraphics instance, Font textRenderer, Component text, int x, int y, int color, boolean shadow, Operation<Integer> original) {
 		if (MossyScreen.isMossyScreen()) {

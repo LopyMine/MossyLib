@@ -1,2 +1,1 @@
-- Little fix for config options
-- More methods
+- Add more common code for projects

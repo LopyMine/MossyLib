@@ -8,7 +8,7 @@ import net.minecraft.resources.Identifier;
 
 //? if fabric && <=1.21.8 {
 /*import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
-*///?}
+ *///?}
 
 public abstract class AbstractResourceReloadListener implements /*? if >=1.21.9 || forge || neoforge {*/ PreparableReloadListener /*?} else {*/ /*IdentifiableResourceReloadListener *//*?}*/ {
 

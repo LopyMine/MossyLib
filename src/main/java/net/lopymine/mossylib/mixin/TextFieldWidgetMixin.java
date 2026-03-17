@@ -28,7 +28,16 @@ public abstract class TextFieldWidgetMixin extends AbstractWidget implements Ren
 	@Shadow
 	protected abstract boolean isEditable();
 
-	//? if >=1.21.6 {
+	//? if >=26.1 {
+	/*@WrapOperation(method = "extractWidgetRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"))
+	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, width, height);
+			return;
+		}
+		BackgroundRenderer.drawWidgetBackground(instance, x, y, width, height, this.isEditable() && this.active, this.isHoveredOrFocused());
+	}
+	*///?} elif >=1.21.6 {
 	@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"))
 	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {

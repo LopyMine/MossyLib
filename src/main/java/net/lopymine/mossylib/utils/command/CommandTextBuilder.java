@@ -14,7 +14,7 @@ import net.minecraft.world.entity.EntityType;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Path;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.network.chat.ClickEvent.ChangePage;
 import net.minecraft.network.chat.ClickEvent.CopyToClipboard;
 import net.minecraft.network.chat.ClickEvent.OpenFile;
@@ -104,7 +104,11 @@ public class CommandTextBuilder {
 		*//*?} else {*/
 		return switch (action) {
 			case SHOW_TEXT -> new ShowText((Component) value);
+			//? if >=26.1 {
+			/*case SHOW_ITEM -> new ShowItem((ItemStackTemplate) value);
+			*///?} else {
 			case SHOW_ITEM -> new ShowItem((ItemStack) value);
+			//?}
 			case SHOW_ENTITY -> new ShowEntity((EntityTooltipInfo) value);
 		};
 		/*?}*/

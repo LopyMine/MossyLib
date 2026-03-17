@@ -78,7 +78,15 @@ public class DrawUtils {
 	}
 
 	public static void drawTooltip(GuiGraphics context, List<ClientTooltipComponent> list, int x, int y) {
-		context./*? if >=1.21.6 {*/ renderTooltip /*?} else {*/ /*renderTooltipInternal *//*?}*/(
+		context.
+		//? if >=26.1 {
+		/*tooltip
+		*///?} elif >=1.21.6 {
+		renderTooltip
+		//?} else {
+		/*renderTooltipInternal
+		*///?}
+		(
 				Minecraft.getInstance().font,
 				list,
 				x,
@@ -113,7 +121,11 @@ public class DrawUtils {
 		if (start < x || end > x + width) {
 			drawScrollableText(context, x, y, width, height, text);
 		} else {
+			//? if >=26.1 {
+			/*context.text(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			*///?} else {
 			context.drawString(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			//?}
 		}
 	}
 
@@ -127,7 +139,11 @@ public class DrawUtils {
 		if (x + textWidth > x + width) {
 			drawScrollableText(context, x, y, width, height, text);
 		} else {
+			//? if >=26.1 {
+			/*context.text(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			*///?} else {
 			context.drawString(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			//?}
 		}
 	}
 

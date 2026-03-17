@@ -15,7 +15,43 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(AbstractScrollArea.class)
 public class ScrollableWidgetMixin {
 
-	//? if >=1.21.6 {
+	//? if >=26.1 {
+	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 0), method = "extractScrollbar")
+	private void renderTransparencyScrollerBackground1(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, width, height);
+			return;
+		}
+		original.call(instance, renderPipeline, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, x, y, width, height);
+	}
+
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 2), method = "extractScrollbar")
+	private void renderTransparencyScrollerBackground2(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, width, height);
+			return;
+		}
+		original.call(instance, renderPipeline, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, x, y, width, height);
+	}
+
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 1), method = "extractScrollbar")
+	private void renderTransparencyScroller1(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, width, height);
+			return;
+		}
+		original.call(instance, renderPipeline, TransparencySprites.SCROLLER_SPRITE, x, y, width, height);
+	}
+
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 3), method = "extractScrollbar")
+	private void renderTransparencyScroller2(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, width, height);
+			return;
+		}
+		original.call(instance, renderPipeline, TransparencySprites.SCROLLER_SPRITE, x, y, width, height);
+	}
+	*///?} elif >=1.21.6 {
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 0), method = "renderScrollbar")
 	private void renderTransparencyScrollerBackground(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
