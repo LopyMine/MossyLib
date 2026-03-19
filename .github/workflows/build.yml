@@ -19,6 +19,8 @@ jobs:
   build:
     needs: prepare-matrix
     runs-on: ubuntu-22.04
+    env:
+      CI: "true"
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.prepare-matrix.outputs.matrix) }}
@@ -31,4 +33,4 @@ jobs:
           distribution: microsoft
       - run: chmod +x ./gradlew
       - name: Build ${{ matrix.platform }}
-        run: ./gradlew buildAndCollect+${{ matrix.platform }}+All
+        run: ./gradlew buildAndCollect+${{ matrix.platform }}+All -Ploader=${{ matrix.platform }}
