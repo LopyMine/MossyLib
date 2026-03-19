@@ -11,7 +11,7 @@ jobs:
       - id: set-matrix
         shell: bash
         run: |
-          loaders=$(grep -E '^mod_loaders' ../../gradle.properties | cut -d= -f2)
+          loaders=$(grep -E '^mod_loaders' gradle.properties | cut -d= -f2)
           loaders=$(echo $loaders)
           json=$(printf '%s\n' $loaders | jq -R . | jq -s '{platform: .}')
           echo "matrix=$json" >> $GITHUB_OUTPUT
