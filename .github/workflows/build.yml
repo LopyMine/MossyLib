@@ -2,20 +2,6 @@ name: Build
 on: [pull_request, push]
 
 jobs:
-  prepare-matrix:
-    runs-on: ubuntu-22.04
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: set-matrix
-        shell: bash
-        run: |
-          loaders=$(grep -E '^mod_loaders' gradle.properties | cut -d= -f2)
-          loaders=$(echo $loaders)
-          json=$(printf '%s\n' $loaders | jq -R . | jq -s -c '{platform: .}')
-          echo "matrix=$json" >> $GITHUB_OUTPUT
-
   build:
     needs: prepare-matrix
     runs-on: ubuntu-22.04
@@ -23,7 +9,8 @@ jobs:
       CI: "true"
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.prepare-matrix.outputs.matrix) }}
+      matrix:
+        platform: [fabric, forge, neoforge]
     steps:
       - uses: actions/checkout@v4
       - uses: gradle/wrapper-validation-action@v2
