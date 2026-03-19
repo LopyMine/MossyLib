@@ -13,7 +13,7 @@ jobs:
         run: |
           loaders=$(grep -E '^mod_loaders' gradle.properties | cut -d= -f2)
           loaders=$(echo $loaders)
-          json=$(printf '%s\n' $loaders | jq -R . | jq -s '{platform: .}')
+          json=$(printf '%s\n' $loaders | jq -R . | jq -s -c '{platform: .}')
           echo "matrix=$json" >> $GITHUB_OUTPUT
 
   build:
