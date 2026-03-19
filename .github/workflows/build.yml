@@ -33,4 +33,4 @@ jobs:
           distribution: microsoft
       - run: chmod +x ./gradlew
       - name: Build ${{ matrix.platform }}
-        run: ./gradlew buildAndCollect+${{ matrix.platform }}+All -Ploader=${{ matrix.platform }}
+        run: ./gradlew buildAndCollect+${{ matrix.platform }}+All -Pci_loader=${{ matrix.platform }}
