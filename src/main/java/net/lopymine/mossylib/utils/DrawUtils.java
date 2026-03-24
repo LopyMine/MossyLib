@@ -2,7 +2,7 @@ package net.lopymine.mossylib.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
@@ -18,7 +18,7 @@ public class DrawUtils {
 	public static int width = 256;
 	public static int height = 256;
 
-	public static void drawGuiTexture(GuiGraphics context, Identifier sprite, int x, int y, int width, int height, int textureWidth, int textureHeight, int border) {
+	public static void drawGuiTexture(GuiGraphicsExtractor context, Identifier sprite, int x, int y, int width, int height, int textureWidth, int textureHeight, int border) {
 		DrawUtils.width = textureWidth;
 		DrawUtils.height = textureHeight;
 		DrawUtils.drawing = true;
@@ -46,7 +46,7 @@ public class DrawUtils {
 	//?}
 
 	//? if >=1.21 {
-	public static void drawGuiTexture(GuiGraphics context, Identifier sprite, int x, int y, int width, int height) {
+	public static void drawGuiTexture(GuiGraphicsExtractor context, Identifier sprite, int x, int y, int width, int height) {
 		context.blitSprite(
 				/*? if >=1.21.6 {*/ net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
 				 /*?} elif >=1.21.2 {*/ /*net.minecraft.client.renderer.RenderType::guiTextured,
@@ -60,7 +60,7 @@ public class DrawUtils {
 	}
 	//?}
 
-	public static void drawTexture(GuiGraphics context, Identifier sprite, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+	public static void drawTexture(GuiGraphicsExtractor context, Identifier sprite, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
 		context.blit(
 				/*? if >=1.21.6 {*/ net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
 				/*?} elif >=1.21.2 {*/ /*net.minecraft.client.renderer.RenderType::guiTextured,
@@ -77,13 +77,13 @@ public class DrawUtils {
 		);
 	}
 
-	public static void drawTooltip(GuiGraphics context, List<ClientTooltipComponent> list, int x, int y) {
+	public static void drawTooltip(GuiGraphicsExtractor context, List<ClientTooltipComponent> list, int x, int y) {
 		context.
 		//? if >=26.1 {
-		/*tooltip
-		*///?} elif >=1.21.6 {
-		renderTooltip
-		//?} else {
+		tooltip
+		//?} elif >=1.21.6 {
+		/*renderTooltip
+		*///?} else {
 		/*renderTooltipInternal
 		*///?}
 		(
@@ -97,20 +97,20 @@ public class DrawUtils {
 	}
 
 	// old
-	public static void drawCenteredText(GuiGraphics context, int x, int y, int width, Component text) {
+	public static void drawCenteredText(GuiGraphicsExtractor context, int x, int y, int width, Component text) {
 		drawCenteredText(context, text, x, y, width);
 	}
 
-	public static void drawText(GuiGraphics context, int x, int y, int width, Component text) {
+	public static void drawText(GuiGraphicsExtractor context, int x, int y, int width, Component text) {
 		drawText(context, text, x, y, width, 0);
 	}
 	// old
 
-	public static void drawCenteredText(GuiGraphics context, Component text, int x, int y, int width) {
+	public static void drawCenteredText(GuiGraphicsExtractor context, Component text, int x, int y, int width) {
 		drawCenteredText(context, text, x, y, width, 0);
 	}
 
-	public static void drawCenteredText(GuiGraphics context, Component text, int x, int y, int width, int height) {
+	public static void drawCenteredText(GuiGraphicsExtractor context, Component text, int x, int y, int width, int height) {
 		Font textRenderer = Minecraft.getInstance().font;
 		int textWidth = textRenderer.width(text);
 
@@ -122,32 +122,32 @@ public class DrawUtils {
 			drawScrollableText(context, x, y, width, height, text);
 		} else {
 			//? if >=26.1 {
-			/*context.text(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
-			*///?} else {
-			context.drawString(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
-			//?}
+			context.text(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			//?} else {
+			/*context.drawString(textRenderer, text, start, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			*///?}
 		}
 	}
 
-	public static void drawText(GuiGraphics context, Component text, int x, int y, int width) {
+	public static void drawText(GuiGraphicsExtractor context, Component text, int x, int y, int width) {
 		drawText(context, text, x, y, width, 0);
 	}
 
-	public static void drawText(GuiGraphics context, Component text, int x, int y, int width, int height) {
+	public static void drawText(GuiGraphicsExtractor context, Component text, int x, int y, int width, int height) {
 		Font textRenderer = Minecraft.getInstance().font;
 		int textWidth = textRenderer.width(text);
 		if (x + textWidth > x + width) {
 			drawScrollableText(context, x, y, width, height, text);
 		} else {
 			//? if >=26.1 {
-			/*context.text(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
-			*///?} else {
-			context.drawString(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
-			//?}
+			context.text(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			//?} else {
+			/*context.drawString(textRenderer, text, x, y + height / 2 - (textRenderer.lineHeight / 2), -1, true);
+			*///?}
 		}
 	}
 
-	private static void drawScrollableText(GuiGraphics context, int x, int y, int width, int height, Component text) {
+	private static void drawScrollableText(GuiGraphicsExtractor context, int x, int y, int width, int height, Component text) {
 		//? if >=1.21.11 {
 		context.textRenderer().acceptScrollingWithDefaultCenter(text, x, x + width, y, y + height);
 		//?} else {

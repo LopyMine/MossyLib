@@ -25,27 +25,27 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 	}
 
 	//? if >=26.1 {
-	/*@WrapOperation(method = "extractDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
-	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
+	@WrapOperation(method = "extractDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphicsExtractor instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, w, h, c);
 			return;
 		}
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, w, h, this.active, this.isHoveredOrFocused());
 	}
-	*///?} elif >=1.21.11 {
-	@WrapOperation(method = "renderDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
-	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
+	//?} elif >=1.21.11 {
+	/*@WrapOperation(method = "renderDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphicsExtractor instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, w, h, c);
 			return;
 		}
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, w, h, this.active, this.isHoveredOrFocused());
 	}
-	//?} elif >=1.21.6 {
+	*///?} elif >=1.21.6 {
 
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
-	private void renderTransparencyWidget(GuiGraphics instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphicsExtractor instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, width, height, color);
 			return;
@@ -54,8 +54,8 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 	}
 
 	*///?} elif >=1.21.2 {
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/Identifier;IIIII)V"))
-	private void renderTransparencyWidget(GuiGraphics instance, Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphicsExtractor instance, Function<?, ?> function, Identifier identifier, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, function, identifier, x, y, width, height, color);
 			return;
@@ -64,8 +64,8 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 	}
 	*///?} elif >=1.20.2 {
 
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V"))
-	private void renderTransparencyWidget(GuiGraphics instance, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V"))
+	private void renderTransparencyWidget(GuiGraphicsExtractor instance, Identifier identifier, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, identifier, x, y, width, height);
 			return;
@@ -74,8 +74,8 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 	}
 
 	*///?} else {
-	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/Identifier;IIIIIIIIII)V"))
-	private void renderTransparencyWidget1(GuiGraphics context, Identifier identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int i, Operation<Void> original) {
+	/*@WrapOperation(method = RENDER_METHOD, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitNineSliced(Lnet/minecraft/resources/Identifier;IIIIIIIIII)V"))
+	private void renderTransparencyWidget1(GuiGraphicsExtractor context, Identifier identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int i, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, identifier, x, y, w, h, a, b, c, d, e, i);
 			return;

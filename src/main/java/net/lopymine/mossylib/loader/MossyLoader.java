@@ -2,7 +2,7 @@ package net.lopymine.mossylib.loader;
 
 //? if fabric {
 
-/*import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.CommandDispatcher;
 import java.util.function.Consumer;
 import net.fabricmc.fabric.api.client.command.v2.*;
 import net.fabricmc.loader.api.FabricLoader;
@@ -11,8 +11,8 @@ import net.lopymine.mossylib.reload.AbstractResourceReloadListener;
 import net.minecraft.server.packs.PackType;
 
 //? if <=1.21.8 {
-/^import net.fabricmc.fabric.api.resource.*;
-^///?} else {
+/*import net.fabricmc.fabric.api.resource.*;
+*///?} else {
 
 import net.fabricmc.fabric.api.resource.v1.*;
 
@@ -35,16 +35,16 @@ public class MossyLoader {
 
 	public static void registerReloadListener(AbstractResourceReloadListener listener) {
 		//? if >=26.1 {
-		/^ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloadListener(listener.getId(), listener);
-		^///?} elif >=1.21.9 {
-		ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloader(listener.getId(), listener);
-		//?} else {
-		/^ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(listener);
-		^///?}
+		ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloadListener(listener.getId(), listener);
+		//?} elif >=1.21.9 {
+		/*ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloader(listener.getId(), listener);
+		*///?} else {
+		/*ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(listener);
+		*///?}
 	}
 
 	//~ client_fabric_commands
-	public static void registerCommands(Consumer<CommandDispatcher<CommandSourceStack>> consumer) {
+	public static void registerCommands(Consumer<CommandDispatcher<FabricClientCommandSource>> consumer) {
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, context) -> {
 			consumer.accept(dispatcher);
 		});
@@ -52,9 +52,9 @@ public class MossyLoader {
 	//~ !client_fabric_commands
 
 }
-*///?} elif neoforge {
+//?} elif neoforge {
 
-import com.mojang.brigadier.CommandDispatcher;
+/*import com.mojang.brigadier.CommandDispatcher;
 import java.util.function.Consumer;
 import net.lopymine.mossylib.reload.AbstractResourceReloadListener;
 import net.minecraft.commands.CommandSourceStack;
@@ -74,8 +74,8 @@ public class MossyLoader {
 			//? if >=1.21.10 {
 			return FMLLoader.getCurrent().getLoadingModList().getModFileById(modid) != null;
 			//?} else {
-			/*return FMLLoader.getLoadingModList().getModFileById(modid) != null;
-			*///?}
+			/^return FMLLoader.getLoadingModList().getModFileById(modid) != null;
+			^///?}
 		} else {
 			return ModList.get().isLoaded(modid);
 		}
@@ -89,8 +89,8 @@ public class MossyLoader {
 		//? if >=1.21.10 {
 		return !FMLLoader.getCurrent().isProduction();
 		//?} else {
-		/*return !FMLLoader.isProduction();
-		*///?}
+		/^return !FMLLoader.isProduction();
+		^///?}
 	}
 
 	public static void registerReloadListener(AbstractResourceReloadListener listener) {
@@ -103,10 +103,10 @@ public class MossyLoader {
 			event.addListener(listener.getId(), listener);
 		});
 		//?} else {
-		/*bus.addListener(RegisterClientReloadListenersEvent.class, event -> {
+		/^bus.addListener(RegisterClientReloadListenersEvent.class, event -> {
 			event.registerReloadListener(listener);
 		});
-		*///?}
+		^///?}
 	}
 
 	public static void registerCommands(Consumer<CommandDispatcher<CommandSourceStack>> consumer) {
@@ -116,7 +116,7 @@ public class MossyLoader {
 	}
 
 }
-//?} elif forge {
+*///?} elif forge {
 
 /*import com.mojang.brigadier.CommandDispatcher;
 import java.nio.file.Path;

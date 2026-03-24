@@ -14,7 +14,7 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import net.lopymine.mossylib.gui.TransparencySprites;
 import net.lopymine.mossylib.utils.DrawUtils;
 import net.lopymine.mossylib.yacl.custom.MossyScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 @Mixin(AbstractSelectionList.class)
 public abstract class EntryListWidgetMixin  {
@@ -32,8 +32,8 @@ public abstract class EntryListWidgetMixin  {
 	^///?}
 
 	//? if >=1.21 {
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 0), method = RENDER_METHOD)
-	private void renderTransparencyScrollerBackground(GuiGraphics context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 0), method = RENDER_METHOD)
+	private void renderTransparencyScrollerBackground(GuiGraphicsExtractor context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, texture, x, y, width, height);
 			return;
@@ -41,8 +41,8 @@ public abstract class EntryListWidgetMixin  {
 		original.call(context, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, x, y, width, height);
 	}
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 1), method = RENDER_METHOD)
-	private void renderTransparencyScroller(GuiGraphics context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lnet/minecraft/resources/Identifier;IIII)V", ordinal = 1), method = RENDER_METHOD)
+	private void renderTransparencyScroller(GuiGraphicsExtractor context, Identifier texture, int x, int y, int width, int height, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, texture, x, y, width, height);
 			return;
@@ -66,8 +66,8 @@ public abstract class EntryListWidgetMixin  {
 	^///?}
 
 	//? <=1.20.1 {
-	/^@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V", ordinal = 0), method = "render")
-	private void renderTransparencyScrollerBackground1(GuiGraphics context, int x1, int y1, int x2, int y2, int color, Operation<Void> original) {
+	/^@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V", ordinal = 0), method = "render")
+	private void renderTransparencyScrollerBackground1(GuiGraphicsExtractor context, int x1, int y1, int x2, int y2, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, x1, y1, x2, y2, color);
 			return;
@@ -77,8 +77,8 @@ public abstract class EntryListWidgetMixin  {
 		DrawUtils.drawGuiTexture(context, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, this.getScrollbarPosition(), this.y1, 6, this.height, 6, 32, 1);
 	}
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V", ordinal = 1), method = "render")
-	private void renderTransparencyScroller2(GuiGraphics context, int x, int y, int width, int height, int color, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V", ordinal = 1), method = "render")
+	private void renderTransparencyScroller2(GuiGraphicsExtractor context, int x, int y, int width, int height, int color, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, x, y, width, height, color);
 			return;
@@ -88,8 +88,8 @@ public abstract class EntryListWidgetMixin  {
 		RenderSystem.disableDepthTest();
 	}
 
-	@WrapWithCondition(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V", ordinal = 2), method = "render")
-	private boolean renderTransparencyScrollerBackground3(GuiGraphics instance, int x1, int y1, int x2, int y2, int color) {
+	@WrapWithCondition(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V", ordinal = 2), method = "render")
+	private boolean renderTransparencyScrollerBackground3(GuiGraphicsExtractor instance, int x1, int y1, int x2, int y2, int color) {
 		return !MossyScreen.isMossyScreen();
 	}
 

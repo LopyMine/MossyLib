@@ -105,10 +105,10 @@ public class CommandTextBuilder {
 		return switch (action) {
 			case SHOW_TEXT -> new ShowText((Component) value);
 			//? if >=26.1 {
-			/*case SHOW_ITEM -> new ShowItem((ItemStackTemplate) value);
-			*///?} else {
-			case SHOW_ITEM -> new ShowItem((ItemStack) value);
-			//?}
+			case SHOW_ITEM -> new ShowItem((ItemStackTemplate) value);
+			//?} else {
+			/*case SHOW_ITEM -> new ShowItem((ItemStack) value);
+			*///?}
 			case SHOW_ENTITY -> new ShowEntity((EntityTooltipInfo) value);
 		};
 		/*?}*/

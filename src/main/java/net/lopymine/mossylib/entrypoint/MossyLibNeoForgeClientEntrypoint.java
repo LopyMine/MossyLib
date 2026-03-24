@@ -1,7 +1,7 @@
 package net.lopymine.mossylib.entrypoint;
 
 //? if neoforge {
-import net.lopymine.mossylib.MossyLib;
+/*import net.lopymine.mossylib.MossyLib;
 
 import net.lopymine.mossylib.client.MossyLibClient;
 import net.lopymine.mossylib.modmenu.*;
@@ -20,5 +20,5 @@ public class MossyLibNeoForgeClientEntrypoint {
 
 }
 
-//?}
+*///?}
 

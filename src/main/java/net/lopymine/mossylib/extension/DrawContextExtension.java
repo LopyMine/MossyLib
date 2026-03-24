@@ -1,11 +1,11 @@
 package net.lopymine.mossylib.extension;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 @SuppressWarnings("unused")
 public class DrawContextExtension {
 
-	public static void push(GuiGraphics context) {
+	public static void push(GuiGraphicsExtractor context) {
 		//? if >=1.21.6 {
 		context.pose().pushMatrix();
 		//?} else {
@@ -13,7 +13,7 @@ public class DrawContextExtension {
 		*///?}
 	}
 
-	public static void pop(GuiGraphics context) {
+	public static void pop(GuiGraphicsExtractor context) {
 		//? if >=1.21.6 {
 		context.pose().popMatrix();
 		//?} else {
@@ -21,7 +21,7 @@ public class DrawContextExtension {
 		*///?}
 	}
 
-	public static void translate(GuiGraphics context, float x, float y, float z) {
+	public static void translate(GuiGraphicsExtractor context, float x, float y, float z) {
 		//? if >=1.21.6 {
 		if (z > 0F) {
 			context.guiRenderState.up();
@@ -32,7 +32,7 @@ public class DrawContextExtension {
 		 *///?}
 	}
 
-	public static void scale(GuiGraphics context, float x, float y, float z) {
+	public static void scale(GuiGraphicsExtractor context, float x, float y, float z) {
 		//? if >=1.21.6 {
 		context.pose().scale(x, y);
 		//?} else {
@@ -40,7 +40,7 @@ public class DrawContextExtension {
 		 *///?}
 	}
 
-	public static void rotateZ(GuiGraphics context, float angle) {
+	public static void rotateZ(GuiGraphicsExtractor context, float angle) {
 		//? if >=1.21.6 {
 		context.pose().rotate(angle * ((float) Math.PI / 180F));
 		//?} else {

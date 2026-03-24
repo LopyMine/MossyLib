@@ -5,7 +5,7 @@ package net.lopymine.mossylib.mixin.tab;
 import net.lopymine.mossylib.gui.TransparencySprites;
 import net.lopymine.mossylib.utils.DrawUtils;
 import net.lopymine.mossylib.yacl.custom.MossyScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -25,8 +25,8 @@ public abstract class TabButtonWidgetMixin extends AbstractWidget {
 	@Shadow public abstract boolean isSelected();
 
 
-	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/Identifier;IIIIIIIIIIII)V"), method = "renderWidget")
-	private void renderTransparencyTab1(GuiGraphics context, Identifier Identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int k, int l, int u, Operation<Void> original) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitNineSliced(Lnet/minecraft/resources/Identifier;IIIIIIIIIIII)V"), method = "renderWidget")
+	private void renderTransparencyTab1(GuiGraphicsExtractor context, Identifier Identifier, int x, int y, int w, int h, int a, int b, int c, int d, int e, int k, int l, int u, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(context, Identifier, x, y, w, h, a, b, c, d, e, k, l, u);
 			return;
@@ -37,8 +37,8 @@ public abstract class TabButtonWidgetMixin extends AbstractWidget {
 		RenderSystem.disableBlend();
 	}
 
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/Identifier;IIIIIIIIIIII)V"), method = "renderWidget")
-	private void renderTabBackground(GuiGraphics context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitNineSliced(Lnet/minecraft/resources/Identifier;IIIIIIIIIIII)V"), method = "renderWidget")
+	private void renderTabBackground(GuiGraphicsExtractor context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
 		int left = this.getX() + 2;
 		int top = this.getY() + 2;
 		int right = (this.getX() + this.getWidth()) - 2;
