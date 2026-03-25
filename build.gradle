@@ -16,7 +16,7 @@ mossyDependencies {
 	parchment = prop("build.parchment")
 
 	additional {
-		//override("modCompileOnly", "yacl")
+		//override("mossyCompileOnly", "yacl")
 	}
 }
 
