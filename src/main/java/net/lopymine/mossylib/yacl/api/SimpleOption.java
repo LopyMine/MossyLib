@@ -185,6 +185,9 @@ public class SimpleOption {
 			} else {
 				builder.customImage(this.customDescriptionRenderer);
 			}
+
+			this.custom.accept(this.optionBuilder);
+
 			this.optionBuilder.description(builder.build());
 			this.optionBuilder.name(ModMenuUtils.getName(modId, optionKey));
 			return this.optionBuilder.build();
