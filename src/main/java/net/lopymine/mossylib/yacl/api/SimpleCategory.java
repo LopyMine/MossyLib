@@ -25,6 +25,11 @@ public class SimpleCategory {
 		return new SimpleCategory(categoryId);
 	}
 
+	public SimpleCategory groups(OptionGroup... groups) {
+		this.custom((builder) -> builder.groups(List.of(groups)));
+		return this;
+	}
+
 	public SimpleCategory groups(SimpleGroup... groups) {
 		this.groups.addAll(List.of(groups));
 		return this;

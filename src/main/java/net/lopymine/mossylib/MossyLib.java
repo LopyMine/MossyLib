@@ -9,7 +9,7 @@ public class MossyLib {
 
 	public static final String MOD_NAME = /*$ mod_name*/ "MossyLib";
 	public static final String MOD_ID = /*$ mod_id*/ "mossylib";
-	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.9.0+26.1-fabric";
+	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.9.4+26.2-fabric";
 
 	public static final MossyLogger LOGGER = new MossyLogger(MOD_NAME);
 

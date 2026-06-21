@@ -19,9 +19,11 @@ public class CommandUtils {
 	}
 
 	public static void sendMessage(Component text) {
-		//? if >=26.1 {
-		Minecraft.getInstance().gui.getChat().addClientSystemMessage(text);
-		//?} else {
+		//? if >=26.2 {
+		Minecraft.getInstance().gui.hud.getChat().addClientSystemMessage(text);
+		//?} elif >=26.1 {
+		/*Minecraft.getInstance().gui.getChat().addClientSystemMessage(text);
+		 *///?} else {
 		/*Minecraft.getInstance().gui.getChat().addMessage(text);
 		*///?}
 	}

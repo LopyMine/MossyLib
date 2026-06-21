@@ -1,5 +1,6 @@
 package net.lopymine.mossylib.logger;
 
+import java.util.function.*;
 import org.jetbrains.annotations.Nullable;
 import lombok.*;
 
@@ -20,6 +21,9 @@ public class MossyLogger {
 
 	@Setter
 	private boolean debugMode = false;
+	@Setter
+	@Nullable
+	private Supplier<Boolean> debugModeConsumer;
 
 	public MossyLogger(String name) {
 		this.name   = name;
@@ -34,7 +38,7 @@ public class MossyLogger {
 	}
 
 	private boolean isDebugModeEnabled() {
-		return this.debugMode || (this.parent != null && this.parent.isDebugModeEnabled());
+		return this.debugMode || (this.parent != null && this.parent.isDebugModeEnabled()) || (this.debugModeConsumer != null && this.debugModeConsumer.get());
 	}
 
 	public void info(String text, Object... args) {

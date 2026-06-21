@@ -1,6 +1,7 @@
 package net.lopymine.mossylib.modmenu;
 
 import com.google.common.collect.Sets;
+import net.lopymine.mossylib.utils.ScreenUtils;
 import net.minecraft.SharedConstants;
 import net.minecraft.util.*;
 import net.minecraft.*;
@@ -44,7 +45,7 @@ public class NoConfigLibraryScreen {
 				MossyLibClient.LOGGER.error("Can't open YACL Modrinth page:", e);
 			}
 		} else {
-			Minecraft.getInstance().setScreen(parent);
+			ScreenUtils.set(parent);
 		}
 	}
 
