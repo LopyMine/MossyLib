@@ -24,8 +24,17 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 		super(x, y, width, height, message);
 	}
 
-	//? if >=26.1 {
-	@WrapOperation(method = "extractDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	//? if >=26.3 {
+	@WrapOperation(method = "extractDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
+	private void renderTransparencyWidget(GuiGraphicsExtractor instance, com.mojang.renderpearl.api.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
+		if (!MossyScreen.isMossyScreen()) {
+			original.call(instance, renderPipeline, identifier, x, y, w, h, c);
+			return;
+		}
+		BackgroundRenderer.drawWidgetBackground(instance, x, y, w, h, this.active, this.isHoveredOrFocused());
+	}
+	//?} elif >=26.1 {
+	/*@WrapOperation(method = "extractDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
 	private void renderTransparencyWidget(GuiGraphicsExtractor instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {
 			original.call(instance, renderPipeline, identifier, x, y, w, h, c);
@@ -33,7 +42,7 @@ public abstract class PressableWidgetMixin extends AbstractWidget implements Ren
 		}
 		BackgroundRenderer.drawWidgetBackground(instance, x, y, w, h, this.active, this.isHoveredOrFocused());
 	}
-	//?} elif >=1.21.11 {
+	*///?} elif >=1.21.11 {
 	/*@WrapOperation(method = "renderDefaultSprite", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V"))
 	private void renderTransparencyWidget(GuiGraphicsExtractor instance, com.mojang.blaze3d.pipeline.RenderPipeline renderPipeline, Identifier identifier, int x, int y, int w, int h, int c, Operation<Void> original) {
 		if (!MossyScreen.isMossyScreen()) {

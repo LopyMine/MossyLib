@@ -15,6 +15,10 @@ import java.net.*;
 import java.util.*;
 import org.jetbrains.annotations.*;
 
+//? if >=26.3 {
+import com.mojang.blaze3d.Blaze3D;
+//?}
+
 public class NoConfigLibraryScreen {
 
 	private static final Set<String> ALLOWED_PROTOCOLS = Sets.newHashSet("http", "https");
@@ -40,7 +44,11 @@ public class NoConfigLibraryScreen {
 				if (!NoConfigLibraryScreen.ALLOWED_PROTOCOLS.contains(string.toLowerCase(Locale.ROOT))) {
 					throw new URISyntaxException(url, "Unsupported protocol: " + string.toLowerCase(Locale.ROOT));
 				}
-				Util.getPlatform().openUri(link);
+				//? if >=26.3 {
+				Blaze3D.openUri(link);
+				//?} else {
+				/*Util.getPlatform().openUri(link);
+				 *///?}
 			} catch (URISyntaxException e) {
 				MossyLibClient.LOGGER.error("Can't open YACL Modrinth page:", e);
 			}
