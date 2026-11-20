@@ -8,9 +8,33 @@
 	"${mod_id}.modmenu.group.mossy_group.name": "§lMossy Group",
 	"${mod_id}.modmenu.group.mossy_group.description": "Example Mossy Group Description.",
 
+	"${mod_id}.modmenu.option.developer_mode.name": "Developer Mode",
+	"${mod_id}.modmenu.option.developer_mode.description": "Enables the \"Development\" category and everything in it outside of the development environment. Useful for modpack makers who want to set up announcements their own way. Reopen this screen after changing.",
+
 	"${mod_id}.modmenu.option.mossy.name": "Mossy Option",
 	"${mod_id}.modmenu.option.mossy.description": "Example Mossy Option Description.",
 
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
-	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled"
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled",
+
+	"${mod_id}.modmenu.category.dev.name": "Development",
+
+	"${mod_id}.modmenu.option.announcements_mode.name": "Announcements",
+	"${mod_id}.modmenu.option.announcements_mode.description": "Which announcements are shown after the game launch in the development environment. Shown announcements are never saved here.",
+	"${mod_id}.modmenu.option.announcements_mode.always": "Always",
+	"${mod_id}.modmenu.option.announcements_mode.conditions": "By conditions",
+	"${mod_id}.modmenu.option.announcements_mode.off": "Never",
+
+	"${mod_id}.modmenu.option.unlock_instantly.name": "Unlock Button Instantly",
+	"${mod_id}.modmenu.option.unlock_instantly.description": "The \"Continue\" button of every announcement is active right away, without the delay.",
+
+	"${mod_id}.modmenu.group.registered_announcements.name": "Registered",
+	"${mod_id}.modmenu.group.registered_announcements.description": "All registered announcements. Disabled ones are skipped in the development environment.",
+
+	"${mod_id}.announcement.title": "Announcement",
+	"${mod_id}.announcement.header": "%s updated to %s",
+	"${mod_id}.announcement.continue": "Continue",
+	"${mod_id}.announcement.continue.countdown": "Continue (%s)",
+	"${mod_id}.announcement.continue.locked": "Sorry, this announcement is really important.\nPlease read it. Thank you for your patience.",
+	"${mod_id}.announcement.option.mod": "[%s] %s"
 }

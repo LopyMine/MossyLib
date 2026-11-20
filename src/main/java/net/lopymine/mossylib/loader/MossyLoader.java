@@ -33,6 +33,18 @@ public class MossyLoader {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
 
+	public static String getModName(String modid) {
+		return FabricLoader.getInstance().getModContainer(modid)
+				.map((container) -> container.getMetadata().getName())
+				.orElse(modid);
+	}
+
+	public static String getModVersion(String modid) {
+		return FabricLoader.getInstance().getModContainer(modid)
+				.map((container) -> container.getMetadata().getVersion().getFriendlyString())
+				.orElse("unknown");
+	}
+
 	public static void registerReloadListener(AbstractResourceReloadListener listener) {
 		//? if >=26.1 {
 		ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloadListener(listener.getId(), listener);
@@ -93,6 +105,18 @@ public class MossyLoader {
 		^///?}
 	}
 
+	public static String getModName(String modid) {
+		return ModList.get().getModContainerById(modid)
+				.map((container) -> container.getModInfo().getDisplayName())
+				.orElse(modid);
+	}
+
+	public static String getModVersion(String modid) {
+		return ModList.get().getModContainerById(modid)
+				.map((container) -> container.getModInfo().getVersion().toString())
+				.orElse("unknown");
+	}
+
 	public static void registerReloadListener(AbstractResourceReloadListener listener) {
 		IEventBus bus = ModLoadingContext.get().getActiveContainer().getEventBus();
 		if (bus == null) {
@@ -147,6 +171,18 @@ public class MossyLoader {
 
 	public static boolean isDevelopmentEnvironment() {
 		return !FMLLoader.isProduction();
+	}
+
+	public static String getModName(String modid) {
+		return ModList.get().getModContainerById(modid)
+				.map((container) -> container.getModInfo().getDisplayName())
+				.orElse(modid);
+	}
+
+	public static String getModVersion(String modid) {
+		return ModList.get().getModContainerById(modid)
+				.map((container) -> container.getModInfo().getVersion().toString())
+				.orElse("unknown");
 	}
 
 	public static void registerReloadListener(AbstractResourceReloadListener listener) {

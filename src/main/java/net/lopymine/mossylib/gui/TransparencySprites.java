@@ -14,10 +14,18 @@ public class TransparencySprites {
 			MossyLib.spriteId("transparency/tab/tab_highlighted") // disabled and hovered
 	);
 
-	public static final Identifier SCROLLER_SPRITE = MossyLib.spriteId("transparency/scroller/scroller");
+	public static final SpriteTextures CHECKBOX_SPRITES = new SpriteTextures(
+			MossyLib.spriteId("transparency/widget/checkbox/checkbox_selected"),
+			MossyLib.spriteId("transparency/widget/checkbox/checkbox"),
+			MossyLib.spriteId("transparency/widget/checkbox/checkbox_selected_highlighted"),
+			MossyLib.spriteId("transparency/widget/checkbox/checkbox_highlighted")
+	);
+
+	public static final Identifier SCROLLER_SPRITE =MossyLib.spriteId("transparency/scroller/scroller");
 	public static final Identifier SCROLLER_BACKGROUND_SPRITE = MossyLib.spriteId("transparency/scroller/scroller_background");
 
 	public static final Identifier DARKER_MENU_BACKGROUND_TEXTURE = MossyLib.id("textures/gui/transparency/darker_menu_background.png");
+	public static final Identifier DARKER_MENU_BACKGROUND_V2_TEXTURE = MossyLib.id("textures/gui/transparency/darker_menu_background_v2.png");
 	private static final Identifier MENU_BACKGROUND_TEXTURE = MossyLib.id("textures/gui/transparency/menu_background.png");
 	private static final Identifier MENU_LIST_BACKGROUND_TEXTURE = MossyLib.id("textures/gui/transparency/menu_background.png");
 	private static final Identifier IN_WORLD_MENU_BACKGROUND_TEXTURE = MossyLib.id("textures/gui/transparency/inworld_menu_background.png");

@@ -24,11 +24,9 @@ public abstract class EntryListWidgetMixin  {
 
 	//? <=1.20.1 {
 	/^@Shadow
+	protected int y0;
+	@Shadow
 	protected int y1;
-	@Shadow
-	protected int width;
-	@Shadow
-	protected int height;
 	^///?}
 
 	//? if >=1.21 {
@@ -74,7 +72,7 @@ public abstract class EntryListWidgetMixin  {
 		}
 		RenderSystem.enableBlend();
 		RenderSystem.enableDepthTest();
-		DrawUtils.drawGuiTexture(context, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, this.getScrollbarPosition(), this.y1, 6, this.height, 6, 32, 1);
+		DrawUtils.drawGuiTexture(context, TransparencySprites.SCROLLER_BACKGROUND_SPRITE, this.getScrollbarPosition(), this.y0, 6, this.y1 - this.y0, 6, 32, 1);
 	}
 
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V", ordinal = 1), method = "render")

@@ -11,6 +11,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.lopymine.mossylib.MossyLib;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 import static net.lopymine.mossylib.utils.CodecUtils.option;
@@ -21,7 +22,10 @@ import static net.lopymine.mossylib.utils.CodecUtils.option;
 public class MossyLibConfig {
 
 	public static final Codec<MossyLibConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-			option("mossy", false, Codec.BOOL, MossyLibConfig::isMossy)
+			option("mossy", false, Codec.BOOL, MossyLibConfig::isMossy),
+			option("developer_mode", false, Codec.BOOL, MossyLibConfig::isDeveloperMode),
+			option("seen_announcements", new ArrayList<>(), Codec.STRING, MossyLibConfig::getSeenAnnouncements),
+			option("dev", MossyLibDevConfig.getNewInstance(), MossyLibDevConfig.CODEC, MossyLibConfig::getDevConfig)
 	).apply(instance, MossyLibConfig::new));
 
 	private static final File CONFIG_FILE = MossyLoader.getConfigDir().resolve(MossyLib.MOD_ID + ".json5").toFile();
@@ -29,6 +33,9 @@ public class MossyLibConfig {
 	private static MossyLibConfig INSTANCE;
 	
 	private boolean mossy;
+	private boolean developerMode;
+	private ArrayList<String> seenAnnouncements;
+	private MossyLibDevConfig devConfig;
 
 	private MossyLibConfig() {
 		throw new IllegalArgumentException();
@@ -40,6 +47,10 @@ public class MossyLibConfig {
 
 	public static MossyLibConfig reload() {
 		return INSTANCE = MossyLibConfig.read();
+	}
+
+	public boolean isDevelopmentActive() {
+		return this.developerMode || MossyLoader.isDevelopmentEnvironment();
 	}
 
 	public static MossyLibConfig getNewInstance() {

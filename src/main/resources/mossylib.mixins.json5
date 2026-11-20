@@ -11,14 +11,21 @@
 		"DrawContextMixin",
 		*///?}
 
+		//? <1.21 {
+		/*"ScreenMixin",
+		*///?}
+
 		//? >=1.21.4 {
 		"ScrollableWidgetMixin",
 		//?} else {
 		/*"EntryListWidgetMixin",
 		*///?}
 
+		"CheckboxMixin",
+		"InitialScreensMixin",
 		"PressableWidgetMixin",
-		"TextFieldWidgetMixin"
+		"TextFieldWidgetMixin",
+		"ToastManagerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

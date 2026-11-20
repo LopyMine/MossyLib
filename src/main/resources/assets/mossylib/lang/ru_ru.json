@@ -8,9 +8,33 @@
 	"${mod_id}.modmenu.group.mossy_group.name": "§lМшистая группа",
 	"${mod_id}.modmenu.group.mossy_group.description": "Пример мшистого описания группы.",
 
+	"${mod_id}.modmenu.option.developer_mode.name": "Режим разработчика",
+	"${mod_id}.modmenu.option.developer_mode.description": "Включает категорию «Разработка» и всё, что в ней есть, вне среды разработки. Полезно сборщикам модпаков, которые хотят настроить объявления по-своему. После изменения откройте этот экран заново.",
+
 	"${mod_id}.modmenu.option.mossy.name": "Пушистая опция",
 	"${mod_id}.modmenu.option.mossy.description": "Пример пушистого описания опции.",
 
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Включено",
-	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Отключено"
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Отключено",
+
+	"${mod_id}.modmenu.category.dev.name": "Разработка",
+
+	"${mod_id}.modmenu.option.announcements_mode.name": "Объявления",
+	"${mod_id}.modmenu.option.announcements_mode.description": "Какие объявления показываются после запуска игры в среде разработки. Показанные объявления здесь никогда не сохраняются.",
+	"${mod_id}.modmenu.option.announcements_mode.always": "Всегда",
+	"${mod_id}.modmenu.option.announcements_mode.conditions": "По условиям",
+	"${mod_id}.modmenu.option.announcements_mode.off": "Никогда",
+
+	"${mod_id}.modmenu.option.unlock_instantly.name": "Разблокировать кнопку сразу",
+	"${mod_id}.modmenu.option.unlock_instantly.description": "Кнопка «Продолжить» во всех объявлениях активна сразу, без задержки.",
+
+	"${mod_id}.modmenu.group.registered_announcements.name": "Зарегистрированные",
+	"${mod_id}.modmenu.group.registered_announcements.description": "Все зарегистрированные объявления. Выключенные пропускаются в среде разработки.",
+
+	"${mod_id}.announcement.title": "Объявление",
+	"${mod_id}.announcement.header": "%s обновился до %s",
+	"${mod_id}.announcement.continue": "Продолжить",
+	"${mod_id}.announcement.continue.countdown": "Продолжить (%s)",
+	"${mod_id}.announcement.continue.locked": "Простите, это объявление действительно важное.\nПожалуйста, прочитайте его. Спасибо за терпение.",
+	"${mod_id}.announcement.option.mod": "[%s] %s"
 }

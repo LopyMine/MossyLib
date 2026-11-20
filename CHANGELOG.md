@@ -1,1 +1,5 @@
-- 26.3 fixes & neoforge support
+- Added announcements API
+- Added "Development" config category with some development options
+- Better MossyScreen style
+- Added toasts API in mossy style
+- Fixed some bugs
